@@ -35,6 +35,7 @@ framework:
 
 # Twig Configuration
 twig:
+    paths: ['%kernel.project_dir%/resources/themes/default']
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
