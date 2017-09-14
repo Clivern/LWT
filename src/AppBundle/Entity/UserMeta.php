@@ -43,7 +43,7 @@ class UserMeta
      */
     private $userId;
 
-   /**
+    /**
      * Many Metas have One User.
      * @ORM\ManyToOne(targetEntity="User", inversedBy="metas")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")

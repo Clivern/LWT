@@ -94,9 +94,23 @@ class User
 
     /**
      * One User has Many Metas.
-     * @ORM\OneToMany(targetEntity="UserMeta", mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="UserMeta", mappedBy="user", cascade={"persist", "remove"})
      */
     private $metas;
+
+    /**
+     * One User has Many Servers.
+     * @ORM\OneToMany(targetEntity="Server", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $servers;
+
+
+    /**
+     * One User has Many Server Rams.
+     * @ORM\OneToMany(targetEntity="ServerRam", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $server_rams;
+
 
     /**
      * Class Constructor
@@ -106,6 +120,8 @@ class User
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->metas = new ArrayCollection();
+        $this->servers = new ArrayCollection();
+        $this->server_rams = new ArrayCollection();
     }
 
     /**
@@ -392,6 +408,78 @@ class User
     {
         $meta->setUser(null);
         $this->metas->removeElement($meta);
+    }
+
+    /**
+     * Get Servers
+     *
+     * @return ArrayCollection
+     */
+    public function getServers()
+    {
+        return $this->servers;
+    }
+
+    /**
+     * Add Server
+     *
+     * @param Server $server
+     * @return void
+     */
+    public function addServer(Server $server)
+    {
+        $server->setUser($this);
+        if (!$this->servers->contains($server)) {
+            $this->servers->add($server);
+        }
+    }
+
+    /**
+     * Remove Server
+     *
+     * @param  Server $server
+     * @return void
+     */
+    public function removeServer(Server $server)
+    {
+        $server->setUser(null);
+        $this->servers->removeElement($server);
+    }
+
+    /**
+     * Get Server Ram
+     *
+     * @return ArrayCollection
+     */
+    public function getServerRams()
+    {
+        return $this->server_rams;
+    }
+
+    /**
+     * Add Server Ram
+     *
+     * @param ServerRam $server_ram
+     * @return void
+     */
+    public function addServerRam(ServerRam $server_ram)
+    {
+        $server_ram->setUser($this);
+        if (!$this->server_rams->contains($server_ram)) {
+            $this->server_rams->add($server_ram);
+        }
+    }
+
+    /**
+     * Remove Server Ram
+     *
+     * @param  ServerRam $server_ram
+     * @return void
+     */
+    public function removeServerRam(ServerRam $server_ram)
+    {
+        $server_ram->setUser(null);
+        $this->server_rams->removeElement($server_ram);
     }
 }
 
