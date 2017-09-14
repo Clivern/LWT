@@ -58,13 +58,15 @@ class Server
 
     /**
      * Many Servers have One User.
+     *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="servers")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
-     * One User has Many Metas.
+     * One Server has Many Rams.
+     *
      * @ORM\OneToMany(targetEntity="ServerRam", mappedBy="server", cascade={"persist", "remove"})
      */
     private $rams;
@@ -239,7 +241,7 @@ class Server
     }
 
     /**
-     * Add Meta
+     * Add Ram
      *
      * @param ServerRam $ram
      * @return void
@@ -253,7 +255,7 @@ class Server
     }
 
     /**
-     * Remove Meta
+     * Remove Ram
      *
      * @param  ServerRam $ram
      * @return void

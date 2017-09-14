@@ -51,6 +51,7 @@ class ServerRam
 
     /**
      * Many Rams have One User.
+     *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="server_rams")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
@@ -58,11 +59,11 @@ class ServerRam
 
     /**
      * Many Rams have One Server.
+     *
      * @ORM\ManyToOne(targetEntity="Server", inversedBy="rams")
      * @ORM\JoinColumn(name="server_id", referencedColumnName="id")
      */
     private $server;
-
 
     /**
      * Get id

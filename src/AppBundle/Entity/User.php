@@ -94,19 +94,22 @@ class User
 
     /**
      * One User has Many Metas.
+     *
      * @ORM\OneToMany(targetEntity="UserMeta", mappedBy="user", cascade={"persist", "remove"})
      */
     private $metas;
 
     /**
      * One User has Many Servers.
+     *
      * @ORM\OneToMany(targetEntity="Server", mappedBy="user", cascade={"persist", "remove"})
      */
     private $servers;
 
 
     /**
-     * One User has Many Server Rams.
+     * One User has Many Rams.
+     *
      * @ORM\OneToMany(targetEntity="ServerRam", mappedBy="user", cascade={"persist", "remove"})
      */
     private $server_rams;
@@ -447,7 +450,7 @@ class User
     }
 
     /**
-     * Get Server Ram
+     * Get Rams
      *
      * @return ArrayCollection
      */
@@ -457,7 +460,7 @@ class User
     }
 
     /**
-     * Add Server Ram
+     * Add Ram
      *
      * @param ServerRam $server_ram
      * @return void
@@ -471,7 +474,7 @@ class User
     }
 
     /**
-     * Remove Server Ram
+     * Remove Ram
      *
      * @param  ServerRam $server_ram
      * @return void
