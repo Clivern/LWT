@@ -17,3 +17,4 @@
 /web/bundles/
 .phpintel/
 node_modules/
+.vagrant/
