@@ -33,3 +33,10 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    # Define the class that will be injected when interface type-hint detected
+    AppBundle\Module\Contract\API\Response: '@AppBundle\Module\Service\API\Response'
+    AppBundle\Module\Contract\Core\Server\Ram: '@AppBundle\Module\Service\Core\Server\Ram'
+    AppBundle\Module\Contract\Core\Auth: '@AppBundle\Module\Service\Core\Auth'
+    AppBundle\Module\Contract\Core\Server: '@AppBundle\Module\Service\Core\Server'
+    AppBundle\Module\Contract\Core\User: '@AppBundle\Module\Service\Core\User'
