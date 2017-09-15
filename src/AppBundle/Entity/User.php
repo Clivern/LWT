@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -11,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -483,6 +484,36 @@ class User
     {
         $server_ram->setUser(null);
         $this->server_rams->removeElement($server_ram);
+    }
+
+    /**
+     * Returns the roles or permissions granted to the user for security.
+     *
+     * @return array
+     */
+    public function getRoles()
+    {
+        return [];
+    }
+
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * {@inheritdoc}
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * {@inheritdoc}
+     */
+    public function eraseCredentials()
+    {
+        #
     }
 }
 

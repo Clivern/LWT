@@ -52,7 +52,7 @@ class Server
     /**
      * @var string
      *
-     * @ORM\Column(name="price", type="decimal", precision=4, scale=10)
+     * @ORM\Column(name="price", type="decimal", precision=10, scale=4)
      */
     private $price;
 
