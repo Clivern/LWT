@@ -41,3 +41,4 @@ services:
     AppBundle\Module\Contract\Core\Server: '@AppBundle\Module\Service\Core\Server'
     AppBundle\Module\Contract\Core\User: '@AppBundle\Module\Service\Core\User'
     AppBundle\Module\Contract\Core\Config: '@AppBundle\Module\Service\Core\Config'
+    AppBundle\Module\Contract\API\Validator: '@AppBundle\Module\Service\API\Validator'

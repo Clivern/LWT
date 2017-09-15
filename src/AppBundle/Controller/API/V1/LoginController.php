@@ -6,6 +6,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use AppBundle\Module\Contract\API\Response as ResponseContract;
+use AppBundle\Module\Contract\API\Validator as ValidatorContract;
+
 
 /**
  * Login API Controller
@@ -15,19 +19,33 @@ use Symfony\Component\HttpFoundation\Request;
 class LoginController extends Controller
 {
 
-	public function __construct()
+    /**
+     * @var ResponseContract
+     */
+    protected $response;
+
+    /**
+     * @var ValidatorContract
+     */
+    protected $validator;
+
+	public function __construct(ResponseContract $response, ValidatorContract $validator)
 	{
-		#
+		$this->response = $response;
+        $this->validator = $validator;
 	}
 
     /**
+     * Auth API Action
+     *
      * @Route("/api/v1/auth", name="api_v1_login_controller_auth_action")
      * @Method({"POST"})
      */
     public function authAction(Request $request)
     {
-    	#
+        #
     }
+
 
     /**
      * Get Current Access Token for User Using Refresh Token
