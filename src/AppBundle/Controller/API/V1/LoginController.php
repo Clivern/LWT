@@ -29,11 +29,11 @@ class LoginController extends Controller
      */
     protected $validator;
 
-	public function __construct(ResponseContract $response, ValidatorContract $validator)
-	{
-		$this->response = $response;
+    public function __construct(ResponseContract $response, ValidatorContract $validator)
+    {
+        $this->response = $response;
         $this->validator = $validator;
-	}
+    }
 
     /**
      * Auth API Action

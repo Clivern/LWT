@@ -11,5 +11,5 @@ use AppBundle\Module\Contract\Core\Server\Ram as RamContract;
  */
 class Ram implements RamContract
 {
-	#
+    #
 }

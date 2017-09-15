@@ -11,5 +11,5 @@ use AppBundle\Module\Contract\Core\User as UserContract;
  */
 class User implements UserContract
 {
-	#
+    #
 }

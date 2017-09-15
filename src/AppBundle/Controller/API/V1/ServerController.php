@@ -9,10 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ServerController extends Controller
 {
-	public function __construct()
-	{
-		#
-	}
+    public function __construct()
+    {
+        #
+    }
 
     /**
      * Get Server By ID
@@ -22,7 +22,7 @@ class ServerController extends Controller
      */
     public function getOneAction(Request $request)
     {
-    	#
+        #
     }
 
     /**

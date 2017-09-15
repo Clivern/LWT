@@ -12,13 +12,13 @@ use AppBundle\Module\Contract\API\Response as ResponseContract;
 class Response implements ResponseContract
 {
 
-	/**
-	 * @var array
-	 */
+    /**
+     * @var array
+     */
     protected $response = [
-    	"success" => false,
-    	"payload" => [],
-    	"messages" => []
+        "success" => false,
+        "payload" => [],
+        "messages" => []
     ];
 
     /**
@@ -29,7 +29,7 @@ class Response implements ResponseContract
      */
     public function setStatus($status)
     {
-    	$this->response['success'] = (boolean) $status;
+        $this->response['success'] = (boolean) $status;
     }
 
     /**
@@ -41,13 +41,13 @@ class Response implements ResponseContract
      */
     public function setPayload($data, $as_array = false)
     {
-    	if( $as_array ){
-    		$this->response['payload'][] = $data;
-    	}else{
-    		foreach ($data as $key => $value) {
-    			$this->response['payload'][$key] = $value;
-    		}
-    	}
+        if( $as_array ){
+            $this->response['payload'][] = $data;
+        }else{
+            foreach ($data as $key => $value) {
+                $this->response['payload'][$key] = $value;
+            }
+        }
     }
 
     /**
@@ -58,7 +58,7 @@ class Response implements ResponseContract
      */
     public function setMessage($message)
     {
-    	$this->response['messages'][] = $message;
+        $this->response['messages'][] = $message;
     }
 
     /**
@@ -81,7 +81,7 @@ class Response implements ResponseContract
      */
     public function getStatus()
     {
-    	return (boolean) $this->response['success'];
+        return (boolean) $this->response['success'];
     }
 
     /**
@@ -91,7 +91,7 @@ class Response implements ResponseContract
      */
     public function getPayload()
     {
-    	return $this->response['payload'];
+        return $this->response['payload'];
     }
 
     /**
@@ -101,7 +101,7 @@ class Response implements ResponseContract
      */
     public function getMessages()
     {
-    	return $this->response['messages'];
+        return $this->response['messages'];
     }
 
     /**
@@ -111,6 +111,6 @@ class Response implements ResponseContract
      */
     public function getResponse()
     {
-    	return $this->response;
+        return $this->response;
     }
 }

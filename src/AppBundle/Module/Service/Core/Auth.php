@@ -11,5 +11,5 @@ use AppBundle\Module\Contract\Core\Auth as AuthContract;
  */
 class Auth implements AuthContract
 {
-	#
+    #
 }

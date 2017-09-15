@@ -11,5 +11,5 @@ use AppBundle\Module\Contract\Core\Server as ServerContract;
  */
 class Server implements ServerContract
 {
-	#
+    #
 }

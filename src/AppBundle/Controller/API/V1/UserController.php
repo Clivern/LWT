@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller
 {
 
-	public function __construct()
-	{
-		#
-	}
+    public function __construct()
+    {
+        #
+    }
 
     /**
      * @Route("/api/user/{id}", requirements={"id": "\d+"}, name="api_v1_user_controller_update_action")
@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function updateAction(Request $request)
     {
-    	#
+        #
     }
 
 }

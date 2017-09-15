@@ -11,5 +11,5 @@ use AppBundle\Module\Contract\Core\Config as ConfigContract;
  */
 class Config implements ConfigContract
 {
-	#
+    #
 }
