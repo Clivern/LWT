@@ -8,5 +8,23 @@ use Symfony\Component\HttpFoundation\Request;
 
 class LoginController extends Controller
 {
+    /**
+     * Render Login
+     *
+     * @Route("/login", name="web_login_controller_login")
+     */
+    public function loginAction(Request $request)
+    {
+        return $this->render('guest/login.html.twig');
+    }
 
+    /**
+     * Logout Action
+     *
+     * @Route("/logout/{hash}", name="web_login_controller_logout")
+     */
+    public function logoutAction(Request $request)
+    {
+        #
+    }
 }
