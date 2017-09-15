@@ -29,6 +29,12 @@ class LoginController extends Controller
      */
     protected $validator;
 
+    /**
+     * Class Constructor
+     *
+     * @param ResponseContract  $response
+     * @param ValidatorContract $validator
+     */
     public function __construct(ResponseContract $response, ValidatorContract $validator)
     {
         $this->response = $response;
