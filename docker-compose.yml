@@ -15,7 +15,7 @@ services:
     volumes:
       - .docker_data/mysql-data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: homestead
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: homestead
       MYSQL_USER: homestead
       MYSQL_PASSWORD: secret
