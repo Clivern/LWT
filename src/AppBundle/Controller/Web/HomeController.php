@@ -29,7 +29,7 @@ class HomeController extends Controller
     public function homeAction(Request $request)
     {
         return $this->render('guest/home.html.twig', [
-            'site_title' => $this->config_service->getByKey('_site_title')
+            'site_title' => 'LWT'
         ]);
     }
 }
