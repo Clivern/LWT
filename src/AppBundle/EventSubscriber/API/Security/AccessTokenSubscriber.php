@@ -63,6 +63,10 @@ class AccessTokenSubscriber implements EventSubscriberInterface
 
         $access_token = $event->getRequest()->query->get('api_token');
 
+        if( empty($access_token) ){
+            $access_token = $event->getRequest()->headers->get('X-AUTH-TOKEN');
+        }
+
         if( !$access_token || ($access_token != 'Access') ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => 'Access Denied! Invalid or Expired Access Token.']);
