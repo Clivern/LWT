@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\Module\Contract\API\Response as ResponseContract;
 use AppBundle\Module\Contract\API\Validator as ValidatorContract;
 
-
 /**
  * Login API Controller
  *

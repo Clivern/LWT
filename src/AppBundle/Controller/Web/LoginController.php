@@ -21,7 +21,7 @@ class LoginController extends Controller
     /**
      * Logout Action
      *
-     * @Route("/logout/{hash}", name="web_login_controller_logout")
+     * @Route("/logout", name="web_login_controller_logout")
      */
     public function logoutAction(Request $request)
     {
