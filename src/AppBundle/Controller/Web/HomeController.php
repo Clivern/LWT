@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Module\Contract\Core\Config as ConfigContract;
 
+
 class HomeController extends Controller
 {
 
@@ -16,6 +17,11 @@ class HomeController extends Controller
      */
     protected $configService;
 
+    /**
+     * Class Constructor
+     *
+     * @param ConfigContract $configService
+     */
     public function __construct(ConfigContract $configService)
     {
         $this->configService = $configService;
