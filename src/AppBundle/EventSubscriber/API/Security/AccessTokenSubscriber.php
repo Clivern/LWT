@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Events\API\Security;
+namespace AppBundle\EventSubscriber\API\Security;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * Check for Access Token on API Requests
  *
- * @package AppBundle\Events\API\Security
+ * @package AppBundle\EventSubscriber\API\Security
  */
 class AccessTokenSubscriber implements EventSubscriberInterface
 {
