@@ -24,7 +24,7 @@ interface Response
      * @param boolean $as_array
      * @return void
      */
-    public function setPayload($data, $as_array = false);
+    public function setPayload($data, $asArray = false);
 
     /**
      * Set Message

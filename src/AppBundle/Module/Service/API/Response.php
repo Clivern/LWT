@@ -36,12 +36,12 @@ class Response implements ResponseContract
      * Set Payload
      *
      * @param array  $data
-     * @param boolean $as_array
+     * @param boolean $asArray
      * @return void
      */
-    public function setPayload($data, $as_array = false)
+    public function setPayload($data, $asArray = false)
     {
-        if( $as_array ){
+        if( $asArray ){
             $this->response['payload'][] = $data;
         }else{
             foreach ($data as $key => $value) {
