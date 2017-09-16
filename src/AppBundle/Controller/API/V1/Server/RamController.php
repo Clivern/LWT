@@ -13,6 +13,11 @@ use AppBundle\Module\Contract\Core\Server\Ram as RamContract;
 use AppBundle\Module\Contract\Core\Config as ConfigContract;
 use AppBundle\Module\Contract\Core\Auth as AuthContract;
 
+/**
+ * Ram API Controller
+ *
+ * @package AppBundle\Controller\API\V1\Server
+ */
 class RamController extends Controller
 {
 

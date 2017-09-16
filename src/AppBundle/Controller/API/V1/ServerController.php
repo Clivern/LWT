@@ -13,6 +13,11 @@ use AppBundle\Module\Contract\Core\Server as ServerContract;
 use AppBundle\Module\Contract\Core\Config as ConfigContract;
 use AppBundle\Module\Contract\Core\Auth as AuthContract;
 
+/**
+ * Server API Controller
+ *
+ * @package AppBundle\Controller\API\V1
+ */
 class ServerController extends Controller
 {
 

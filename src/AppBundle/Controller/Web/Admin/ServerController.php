@@ -10,6 +10,11 @@ use AppBundle\Module\Contract\Core\Auth as AuthContract;
 use AppBundle\Module\Contract\Core\Server as ServerContract;
 use AppBundle\Module\Contract\Core\Server\Ram as RamContract;
 
+/**
+ * Server Controller
+ *
+ * @package AppBundle\Controller\Web\Admin
+ */
 class ServerController extends Controller
 {
 

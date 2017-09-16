@@ -9,6 +9,11 @@ use AppBundle\Module\Contract\Core\Config as ConfigContract;
 use AppBundle\Module\Contract\Core\Auth as AuthContract;
 use AppBundle\Module\Contract\Core\User as UserContract;
 
+/**
+ * Profile Controller
+ *
+ * @package AppBundle\Controller\Web\Admin
+ */
 class ProfileController extends Controller
 {
     /**

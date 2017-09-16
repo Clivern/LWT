@@ -13,6 +13,11 @@ use AppBundle\Module\Contract\Core\User as UserContract;
 use AppBundle\Module\Contract\Core\Config as ConfigContract;
 use AppBundle\Module\Contract\Core\Auth as AuthContract;
 
+/**
+ * User API Controller
+ *
+ * @package AppBundle\Controller\API\V1
+ */
 class UserController extends Controller
 {
 

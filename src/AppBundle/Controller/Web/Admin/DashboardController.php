@@ -8,6 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Module\Contract\Core\Config as ConfigContract;
 use AppBundle\Module\Contract\Core\Auth as AuthContract;
 
+/**
+ * Dashboard Controller
+ *
+ * @package AppBundle\Controller\Web\Admin
+ */
 class DashboardController extends Controller
 {
     /**

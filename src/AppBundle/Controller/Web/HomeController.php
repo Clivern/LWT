@@ -8,6 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Module\Contract\Core\Config as ConfigContract;
 use AppBundle\Module\Contract\Core\Auth as AuthContract;
 
+/**
+ * Home Controller
+ *
+ * @package AppBundle\Controller\Web
+ */
 class HomeController extends Controller
 {
 
