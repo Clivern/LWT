@@ -18,3 +18,4 @@
 .phpintel/
 node_modules/
 .vagrant/
+.docker_data/
