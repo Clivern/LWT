@@ -5,9 +5,8 @@ namespace AppBundle\Controller\Web;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
 use AppBundle\Module\Contract\Core\Config as ConfigContract;
-
+use AppBundle\Module\Contract\Core\Auth as AuthContract;
 
 class HomeController extends Controller
 {
@@ -15,16 +14,23 @@ class HomeController extends Controller
     /**
      * @var ConfigContract
      */
-    protected $configService;
+    protected $config;
+
+    /**
+     * @var AuthContract
+     */
+    protected $auth;
 
     /**
      * Class Constructor
      *
-     * @param ConfigContract $configService
+     * @param ConfigContract $config
+     * @param AuthContract   $auth
      */
-    public function __construct(ConfigContract $configService)
+    public function __construct(ConfigContract $config, AuthContract $auth)
     {
-        $this->configService = $configService;
+        $this->config = $config;
+        $this->auth = $auth;
     }
 
     /**

@@ -34,4 +34,11 @@ interface Auth
      * @return boolean
      */
     public function loginById($id);
+
+    /**
+     * Check if user is logged
+     *
+     * @return mixed
+     */
+    public function isLogged();
 }

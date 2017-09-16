@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\Module\Contract\API\Response as ResponseContract;
 use AppBundle\Module\Contract\API\Validator as ValidatorContract;
+use AppBundle\Module\Contract\Core\Config as ConfigContract;
+use AppBundle\Module\Contract\Core\Auth as AuthContract;
 
 /**
  * Login API Controller
@@ -29,15 +31,29 @@ class LoginController extends Controller
     protected $validator;
 
     /**
+     * @var ConfigContract
+     */
+    protected $config;
+
+    /**
+     * @var AuthContract
+     */
+    protected $auth;
+
+    /**
      * Class Constructor
      *
      * @param ResponseContract  $response
      * @param ValidatorContract $validator
+     * @param ConfigContract $config
+     * @param AuthContract $auth
      */
-    public function __construct(ResponseContract $response, ValidatorContract $validator)
+    public function __construct(ResponseContract $response, ValidatorContract $validator, ConfigContract $config, AuthContract $auth)
     {
         $this->response = $response;
         $this->validator = $validator;
+        $this->config = $config;
+        $this->auth = $auth;
     }
 
     /**

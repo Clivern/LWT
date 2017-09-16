@@ -6,8 +6,9 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
-use AppBundle\Module\Contract\API\Response as ResponseContract;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use AppBundle\Module\Contract\API\Response as ResponseContract;
+use AppBundle\Module\Contract\Core\Auth as AuthContract;
 
 /**
  * Check for Access Token on API Requests
@@ -23,13 +24,19 @@ class AccessTokenSubscriber implements EventSubscriberInterface
     protected $response;
 
     /**
+     * @var AuthContract
+     */
+    protected $auth;
+
+    /**
      * Class Constructor
      *
      * @param ResponseContract $response
      */
-    public function __construct(ResponseContract $response)
+    public function __construct(ResponseContract $response, AuthContract $auth)
     {
         $this->response = $response;
+        $this->auth = $auth;
     }
 
     /**

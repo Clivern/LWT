@@ -33,6 +33,11 @@ class Auth implements AuthContract
     protected $tokenStorage;
 
     /**
+     * @var object
+     */
+    protected $currentUser;
+
+    /**
      * ManualPasswordValidator constructor.
      *
      * @param EntityManager $entityManager
@@ -106,6 +111,18 @@ class Auth implements AuthContract
         $this->tokenStorage->setToken($token);
 
         return true;
+    }
+
+    /**
+     * Check if user is logged
+     *
+     * @return mixed
+     */
+    public function isLogged()
+    {
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        return (!empty($user)) ? $user : false;
     }
 
     /**

@@ -5,9 +5,45 @@ namespace AppBundle\Controller\Web\Admin;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Module\Contract\Core\Config as ConfigContract;
+use AppBundle\Module\Contract\Core\Auth as AuthContract;
+use AppBundle\Module\Contract\Core\Server as ServerContract;
+use AppBundle\Module\Contract\Core\Server\Ram as RamContract;
 
 class ServerController extends Controller
 {
+
+    /**
+     * @var ConfigContract
+     */
+    protected $config;
+
+    /**
+     * @var AuthContract
+     */
+    protected $auth;
+
+    /**
+     * @var ServerContract
+     */
+    protected $server;
+
+    /**
+     * Class Constructor
+     *
+     * @param ConfigContract $config
+     * @param AuthContract   $auth
+     * @param ServerContract   $server
+     * @param RamContract   $ram
+     */
+    public function __construct(ConfigContract $config, AuthContract $auth, ServerContract $server, RamContract $ram)
+    {
+        $this->config = $config;
+        $this->auth = $auth;
+        $this->server = $server;
+        $this->ram = $ram;
+    }
+
     /**
      * Render Server List
      *
