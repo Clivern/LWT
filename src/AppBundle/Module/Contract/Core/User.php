@@ -9,6 +9,7 @@ namespace AppBundle\Module\Contract\Core;
  */
 interface User
 {
+
     /**
      * Get by id
      *
@@ -36,10 +37,10 @@ interface User
     /**
      * Get by api token
      *
-     * @param  string $api_token
+     * @param  string $apiToken
      * @return mixed
      */
-    public function getByApiToken($api_token);
+    public function getByApiToken($apiToken);
 
     /**
      * Check if username exist
@@ -58,13 +59,21 @@ interface User
     public function checkEmail($email);
 
     /**
+     * Check if api token exist
+     *
+     * @param  string $apiToken
+     * @return mixed
+     */
+    public function checkApiToken($apiToken);
+
+    /**
      * Update user by id
      *
      * @param  integer $id
-     * @param  array $new_data
+     * @param  array $newData
      * @return boolean
      */
-    public function updateById($id, $new_data);
+    public function updateById($id, $newData);
 
     /**
      * Update access token if expiry time reached

@@ -22,16 +22,16 @@ class Config implements ConfigContract
     /**
      * @var EntityManager
      */
-    protected $entity_manager;
+    protected $entityManager;
 
     /**
      * Service Constructor
      *
-     * @param EntityManager $entity_manager
+     * @param EntityManager $entityManager
      */
-    public function __construct(EntityManager $entity_manager)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->entity_manager = $entity_manager;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -49,9 +49,9 @@ class Config implements ConfigContract
         $config->setConfigValue((is_array($value)) ? serialize($value) : $value);
         $config->setAutoload($autoload);
 
-        $this->entity_manager->persist($config);
+        $this->entityManager->persist($config);
 
-        $this->entity_manager->flush();
+        $this->entityManager->flush();
 
         return true;
     }
@@ -64,7 +64,7 @@ class Config implements ConfigContract
      */
     public function autoload($type = 'on')
     {
-        $configs = $this->entity_manager->getRepository(ConfigEntity::class)->findBy(['autoload' => $type]);
+        $configs = $this->entityManager->getRepository(ConfigEntity::class)->findBy(['autoload' => $type]);
 
         foreach ($configs as $config) {
             $this->configs[$config->getConfigKey()] = $config->getConfigValue();
@@ -86,7 +86,7 @@ class Config implements ConfigContract
             return $this->configs[$key];
         }
 
-        $config = $this->entity_manager->getRepository(ConfigEntity::class)->findOneBy(['configKey' => $key]);
+        $config = $this->entityManager->getRepository(ConfigEntity::class)->findOneBy(['configKey' => $key]);
 
         if( !empty($config) ){
             $this->configs[$key] = $config->getConfigValue();
@@ -107,12 +107,12 @@ class Config implements ConfigContract
      */
     public function updateByKey($key, $value)
     {
-        $config = $this->entity_manager->getRepository(ConfigEntity::class)->findOneBy(['configKey' => $key]);
+        $config = $this->getByKey($key);
 
         if( !empty($config) ){
             $value = (is_array($value)) ? serialize($value) : $value;
             $config->setConfigValue($value);
-            $this->entity_manager->flush();
+            $this->entityManager->flush();
 
             return true;
         }
@@ -129,12 +129,12 @@ class Config implements ConfigContract
      */
     public function updateById($id, $value)
     {
-        $config = $this->entity_manager->getRepository(ConfigEntity::class)->findOneBy(['id' => $id]);
+        $config = $this->entityManager->getRepository(ConfigEntity::class)->findOneBy(['id' => $id]);
 
         if( !empty($config) ){
             $value = (is_array($value)) ? serialize($value) : $value;
             $config->setConfigValue($value);
-            $this->entity_manager->flush();
+            $this->entityManager->flush();
             return true;
         }
 
@@ -183,11 +183,11 @@ class Config implements ConfigContract
      */
     public function deleteById($id)
     {
-        $config = $this->entity_manager->getRepository(ConfigEntity::class)->findOneBy(['id' => $id]);
+        $config = $this->entityManager->getRepository(ConfigEntity::class)->findOneBy(['id' => $id]);
 
         if( !empty($config) ){
-            $this->entity_manager->remove($config);
-            $this->entity_manager->flush();
+            $this->entityManager->remove($config);
+            $this->entityManager->flush();
 
             return true;
         }
@@ -203,11 +203,11 @@ class Config implements ConfigContract
      */
     public function deleteByKey($key)
     {
-        $config = $this->entity_manager->getRepository(ConfigEntity::class)->findOneBy(['configKey' => $key]);
+        $config = $this->getByKey($key);
 
         if( !empty($config) ){
-            $this->entity_manager->remove($config);
-            $this->entity_manager->flush();
+            $this->entityManager->remove($config);
+            $this->entityManager->flush();
 
             return true;
         }

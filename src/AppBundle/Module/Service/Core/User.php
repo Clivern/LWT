@@ -16,16 +16,16 @@ class User implements UserContract
     /**
      * @var EntityManager
      */
-    protected $entity_manager;
+    protected $entityManager;
 
     /**
      * Service Constructor
      *
-     * @param EntityManager $entity_manager
+     * @param EntityManager $entityManager
      */
-    public function __construct(EntityManager $entity_manager)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->entity_manager = $entity_manager;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -36,7 +36,7 @@ class User implements UserContract
      */
     public function getById($id)
     {
-        $user = $this->entity_manager->getRepository(UserEntity::class)->findOneBy(['id' => $id]);
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['id' => $id]);
 
         return (!empty($user)) ? $user : false;
     }
@@ -49,7 +49,7 @@ class User implements UserContract
      */
     public function getByUsername($username)
     {
-        $user = $this->entity_manager->getRepository(UserEntity::class)->findOneBy(['username' => $username]);
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['username' => $username]);
 
         return (!empty($user)) ? $user : false;
     }
@@ -62,7 +62,7 @@ class User implements UserContract
      */
     public function getByEmail($email)
     {
-        $user = $this->entity_manager->getRepository(UserEntity::class)->findOneBy(['email' => $email]);
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['email' => $email]);
 
         return (!empty($user)) ? $user : false;
     }
@@ -70,12 +70,12 @@ class User implements UserContract
     /**
      * Get by api token
      *
-     * @param  string $api_token
+     * @param  string $apiToken
      * @return mixed
      */
-    public function getByApiToken($api_token)
+    public function getByApiToken($apiToken)
     {
-        $user = $this->entity_manager->getRepository(UserEntity::class)->findOneBy(['apiToken' => $api_token]);
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['apiToken' => $apiToken]);
 
         return (!empty($user)) ? $user : false;
     }
@@ -88,7 +88,7 @@ class User implements UserContract
      */
     public function chechUsername($username)
     {
-        $user = $this->entity_manager->getRepository(UserEntity::class)->findOneBy(['username' => $username]);
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['username' => $username]);
 
         return (!empty($user)) ? true : false;
     }
@@ -101,7 +101,20 @@ class User implements UserContract
      */
     public function checkEmail($email)
     {
-        $user = $this->entity_manager->getRepository(UserEntity::class)->findOneBy(['email' => $email]);
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['email' => $email]);
+
+        return (!empty($user)) ? true : false;
+    }
+
+    /**
+     * Check if api token exist
+     *
+     * @param  string $apiToken
+     * @return mixed
+     */
+    public function checkApiToken($apiToken)
+    {
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['apiToken' => $apiToken]);
 
         return (!empty($user)) ? true : false;
     }
@@ -110,24 +123,24 @@ class User implements UserContract
      * Update user by id
      *
      * @param  integer $id
-     * @param  array $new_data
+     * @param  array $newData
      * @return boolean
      */
-    public function updateById($id, $new_data)
+    public function updateById($id, $newData)
     {
         $user = $this->getById($id);
 
-        if( !empty($user) && !empty($new_data) ){
-            if( isset($new_data['name']) ){
-                $user->setName($new_data['name']);
+        if( !empty($user) && !empty($newData) ){
+            if( isset($newData['name']) ){
+                $user->setName($newData['name']);
             }
-            if( isset($new_data['username']) ){
-                $user->setUsername($new_data['username']);
+            if( isset($newData['username']) ){
+                $user->setUsername($newData['username']);
             }
-            if( isset($new_data['email']) ){
-                $user->setEmail($new_data['email']);
+            if( isset($newData['email']) ){
+                $user->setEmail($newData['email']);
             }
-            $this->entity_manager->flush();
+            $this->entityManager->flush();
 
             return true;
         }
@@ -151,13 +164,13 @@ class User implements UserContract
                 $new_token = password_hash(substr(md5(rand()), 0, 20), PASSWORD_DEFAULT);
                 $token_expire = time() + (24 * 60 * 60);
 
-                while ( empty($this->entity_manager->getRepository(UserEntity::class)->findOneBy(['apiToken' => $new_token])) ) {
+                while ( $this->checkApiToken($new_token) ) {
                     $new_token = password_hash(substr(md5(rand()), 0, 20), PASSWORD_DEFAULT);
                 }
 
                 $user->setApiToken($new_token);
                 $user->setApiTokenExpire($token_expire);
-                $this->entity_manager->flush();
+                $this->entityManager->flush();
                 return true;
             }
             return true;

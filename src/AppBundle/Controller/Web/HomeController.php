@@ -14,11 +14,11 @@ class HomeController extends Controller
     /**
      * @var ConfigContract
      */
-    protected $config_service;
+    protected $configService;
 
-    public function __construct(ConfigContract $config_service)
+    public function __construct(ConfigContract $configService)
     {
-        $this->config_service = $config_service;
+        $this->configService = $configService;
     }
 
     /**
