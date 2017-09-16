@@ -148,11 +148,11 @@ class User implements UserContract
         if( !empty($user) ){
             if( (time() + 60 * 60) > $user->getApiTokenExpire() ){
 
-                $new_token = password_hash(substr(md5(rand()), 0, 20);
+                $new_token = password_hash(substr(md5(rand()), 0, 20), PASSWORD_DEFAULT);
                 $token_expire = time() + (24 * 60 * 60);
 
                 while ( empty($this->entity_manager->getRepository(UserEntity::class)->findOneBy(['apiToken' => $new_token])) ) {
-                    $new_token = password_hash(substr(md5(rand()), 0, 20);
+                    $new_token = password_hash(substr(md5(rand()), 0, 20), PASSWORD_DEFAULT);
                 }
 
                 $user->setApiToken($new_token);
