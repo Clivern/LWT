@@ -56,7 +56,9 @@ class Validator implements ValidatorContract
      */
     public function validate()
     {
-        foreach ($this->inputs as $input_name => $input) {
+        $this->messages = [];
+
+        foreach ($this->inputs as $input) {
             $input['rule'] = "\Symfony\Component\Validator\Constraints\\" . $input['rule'];
             if( (isset($input['parameters'])) && !empty($input['parameters']) ){
                 $rule =  new $input['rule']($input['parameters']);
