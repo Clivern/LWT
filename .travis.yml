@@ -7,15 +7,22 @@ php:
     - 7.0
     - 7.1
 
+services:
+    - mysql
+
 ## Cache composer
 cache:
   directories:
     - $HOME/.composer/cache
 
 before_script:
+  - mysql -e 'CREATE DATABASE homestead;'
   - phpenv config-rm xdebug.ini
   - travis_retry composer self-update
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
+  - cp app/config/parameters.yml.travis app/config/parameters.yml
+  - php bin/console doctrine:schema:update --force
+  - php bin/console doctrine:fixtures:load -n
 
 script:
   - ./vendor/bin/simple-phpunit --coverage-text
