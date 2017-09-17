@@ -73,7 +73,7 @@ class UserController extends Controller
     public function updateAction(Request $request)
     {
         // Make sure that request come from profile owner
-        if( $this->auth->getCurrentUser()->getId() != $request->get('id', '') ){
+        if( $this->auth->getCurrentUser()->getId() != $request->attributes->get('id', '') ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Invalid Request.')]);
             return new JsonResponse($this->response->getResponse());
@@ -82,39 +82,39 @@ class UserController extends Controller
         // Validate Inputs
         $this->validator->setInputs([
             [
-                'value' => $request->get('name', ''),
+                'value' => $request->request->get('name', ''),
                 'rule' => 'NotBlank',
                 'constraint' => ['message' => $this->get('translator')->trans('Your name must be provided.')]
             ],[
-                'value' => $request->get('name', ''),
+                'value' => $request->request->get('name', ''),
                 'rule' => 'Length',
                 'parameters' => ['min' => 2, 'max' => 20],
                 'constraint' => ['minMessage' => $this->get('translator')->trans('Your name must be at least 2 characters long.'), 'maxMessage' => $this->get('translator')->trans('Your name cannot be longer than 20 characters.')]
             ],[
-                'value' => $request->get('name', ''),
+                'value' => $request->request->get('name', ''),
                 'rule' => 'Type',
                 'parameters' => ['type' => 'string'],
                 'constraint' => ['message' => $this->get('translator')->trans('Your name must be a string.')]
             ],[
-                'value' => $request->get('username', ''),
+                'value' => $request->request->get('username', ''),
                 'rule' => 'NotBlank',
                 'constraint' => ['message' => $this->get('translator')->trans('Your username must be provided.')]
             ],[
-                'value' => $request->get('username', ''),
+                'value' => $request->request->get('username', ''),
                 'rule' => 'Length',
                 'parameters' => ['min' => 2, 'max' => 20],
                 'constraint' => ['minMessage' => $this->get('translator')->trans('Your username must be at least 2 characters long.'), 'maxMessage' => $this->get('translator')->trans('Your username cannot be longer than 20 characters.')]
             ],[
-                'value' => $request->get('username', ''),
+                'value' => $request->request->get('username', ''),
                 'rule' => 'Type',
                 'parameters' => ['type' => 'alnum'],
                 'constraint' => ['message' => $this->get('translator')->trans('Your username must be alphanumeric.')]
             ],[
-                'value' => $request->get('email', ''),
+                'value' => $request->request->get('email', ''),
                 'rule' => 'NotBlank',
                 'constraint' => ['message' => $this->get('translator')->trans('Your email must be provided.')]
             ],[
-                'value' => $request->get('email', ''),
+                'value' => $request->request->get('email', ''),
                 'rule' => 'Email',
                 'constraint' => ['message' => $this->get('translator')->trans('Invalid email address.')]
             ],
@@ -127,24 +127,24 @@ class UserController extends Controller
         }
 
         // Check if Username is used
-        if( $this->user->chechUsername($request->get('username', ''), $this->auth->getCurrentUser()->getId()) ){
+        if( $this->user->chechUsername($request->request->get('username', ''), $this->auth->getCurrentUser()->getId()) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Error! Username is already used.')]);
             return new JsonResponse($this->response->getResponse());
         }
 
         // Check if email is used
-        if( $this->user->checkEmail($request->get('email', ''), $this->auth->getCurrentUser()->getId()) ){
+        if( $this->user->checkEmail($request->request->get('email', ''), $this->auth->getCurrentUser()->getId()) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Error! Email is already used.')]);
             return new JsonResponse($this->response->getResponse());
         }
 
         // Update Profile
-        $status = $this->user->updateById($request->get('id'), [
-            'name' => $request->get('name', ''),
-            'username' => $request->get('username', ''),
-            'email' => $request->get('email', '')
+        $status = $this->user->updateById($request->attributes->get('id'), [
+            'name' => $request->request->get('name', ''),
+            'username' => $request->request->get('username', ''),
+            'email' => $request->request->get('email', '')
         ]);
 
         if( $status ){

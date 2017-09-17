@@ -80,21 +80,21 @@ class RamController extends Controller
     public function getOneAction(Request $request)
     {
         // Make sure that user owns this server
-        if( !$this->server->userOwns($this->auth->getCurrentUser()->getId(), $request->get('server_id', '')) ){
+        if( !$this->server->userOwns($this->auth->getCurrentUser()->getId(), $request->attributes->get('server_id', '')) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Invalid Request.')]);
             return new JsonResponse($this->response->getResponse());
         }
 
         // Make sure that user owns this ram
-        if( !$this->ram->userOwns($this->auth->getCurrentUser()->getId(), $request->get('ram_id', '')) ){
+        if( !$this->ram->userOwns($this->auth->getCurrentUser()->getId(), $request->attributes->get('ram_id', '')) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Invalid Request.')]);
             return new JsonResponse($this->response->getResponse());
         }
 
         // Get Ram
-        $ram = $this->ram->getById($request->get('ram_id', ''));
+        $ram = $this->ram->getById($request->attributes->get('ram_id', ''));
 
         if( !empty($ram) ){
             // Return ram data
@@ -122,14 +122,14 @@ class RamController extends Controller
     public function getManyAction(Request $request)
     {
         // Make sure that user owns this server
-        if( !$this->server->userOwns($this->auth->getCurrentUser()->getId(), $request->get('server_id', '')) ){
+        if( !$this->server->userOwns($this->auth->getCurrentUser()->getId(), $request->attributes->get('server_id', '')) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Invalid Request.')]);
             return new JsonResponse($this->response->getResponse());
         }
 
         // Get Rams
-        $rams = $this->ram->getByServerId($request->get('server_id', ''), 1, 100, true);
+        $rams = $this->ram->getByServerId($request->attributes->get('server_id', ''), 1, 100, true);
 
         // Return Response
         $this->response->setStatus(true);
@@ -146,7 +146,7 @@ class RamController extends Controller
     public function createAction(Request $request)
     {
         // Make sure that user owns this server
-        if( !$this->server->userOwns($this->auth->getCurrentUser()->getId(), $request->get('server_id', '')) ){
+        if( !$this->server->userOwns($this->auth->getCurrentUser()->getId(), $request->attributes->get('server_id', '')) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Invalid Request.')]);
             return new JsonResponse($this->response->getResponse());
@@ -155,30 +155,30 @@ class RamController extends Controller
         // Validate Inputs
         $this->validator->setInputs([
             [
-                'value' => $request->get('type', ''),
+                'value' => $request->request->get('type', ''),
                 'rule' => 'NotBlank',
                 'constraint' => ['message' => $this->get('translator')->trans('Ram type must be provided.')]
             ],[
-                'value' => $request->get('type', ''),
+                'value' => $request->request->get('type', ''),
                 'rule' => 'Choice',
                 'parameters' => ['DDR3', 'DDR4'],
                 'constraint' => ['message' => $this->get('translator')->trans('Ram type must be DDR3 or DDR4.')]
             ],[
-                'value' => $request->get('size', ''),
+                'value' => $request->request->get('size', ''),
                 'rule' => 'NotBlank',
                 'constraint' => ['message' => $this->get('translator')->trans('Ram size must be provided.')]
             ],[
-                'value' => $request->get('size', ''),
+                'value' => $request->request->get('size', ''),
                 'rule' => 'Length',
                 'parameters' => ['min' => 1, 'max' => 11],
                 'constraint' => ['minMessage' => $this->get('translator')->trans('Ram size must be at least 1 integers long.'), 'maxMessage' => $this->get('translator')->trans('Ram size cannot be longer than 11 integers.')]
             ],[
-                'value' => $request->get('size', ''),
+                'value' => $request->request->get('size', ''),
                 'rule' => 'Type',
                 'parameters' => ['type' => 'numeric'],
                 'constraint' => ['message' => $this->get('translator')->trans('Ram size must be integer.')]
             ],[
-                'value' => $request->get('size', ''),
+                'value' => $request->request->get('size', ''),
                 'rule' => 'GreaterThan',
                 'parameters' => ['value' => 0],
                 'constraint' => ['message' => $this->get('translator')->trans('Ram size must be greater than zero.')]
@@ -193,10 +193,10 @@ class RamController extends Controller
 
         // Insert Server Ram
         $status = $this->ram->insert([
-            'server' => $this->server->getById($request->get('server_id', '')),
+            'server' => $this->server->getById($request->attributes->get('server_id', '')),
             'user' => $this->auth->getCurrentUser(),
-            'type' => $request->get('type', ''),
-            'size' => $request->get('size', '')
+            'type' => $request->request->get('type', ''),
+            'size' => $request->request->get('size', '')
         ]);
 
         if( $status ){
@@ -219,21 +219,21 @@ class RamController extends Controller
     public function deleteAction(Request $request)
     {
         // Make sure that user owns this server
-        if( !$this->server->userOwns($this->auth->getCurrentUser()->getId(), $request->get('server_id', '')) ){
+        if( !$this->server->userOwns($this->auth->getCurrentUser()->getId(), $request->attributes->get('server_id', '')) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Invalid Request.')]);
             return new JsonResponse($this->response->getResponse());
         }
 
         // Make sure that user owns this ram
-        if( !$this->ram->userOwns($this->auth->getCurrentUser()->getId(), $request->get('ram_id', '')) ){
+        if( !$this->ram->userOwns($this->auth->getCurrentUser()->getId(), $request->attributes->get('ram_id', '')) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Invalid Request.')]);
             return new JsonResponse($this->response->getResponse());
         }
 
         // Delete Ram
-        $status = $this->ram->deleteById($request->get('ram_id', ''));
+        $status = $this->ram->deleteById($request->attributes->get('ram_id', ''));
 
         if( $status ){
             $this->response->setStatus(true);
