@@ -1,7 +1,7 @@
 LWT
 ===
 
-:wolf: Simple ERP Application Skelton In Symfony 3.3.9.
+:wolf: Simple ERP Application Skeleton In Symfony 3.3.9.
 
 *Current version: Under Development*
 
