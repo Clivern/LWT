@@ -48,11 +48,25 @@ class Ram implements RamContract
      * @param  integer  $serverId
      * @param  integer $currentPage
      * @param  integer $perPage
+     * @param  boolean $asArray
      * @return array
      */
-    public function getByServerId($serverId, $currentPage = 1, $perPage = 10)
+    public function getByServerId($serverId, $currentPage = 1, $perPage = 10, $asArray = false)
     {
         $rams = $this->entityManager->getRepository(ServerRamEntity::class)->findBy(['serverId' => $serverId]);
+
+        if( $asArray ){
+            $rams_list = [];
+            foreach ($rams as $ram) {
+                $rams_list[] = [
+                    'id' => $ram->getId(),
+                    'type' => $ram->getType(),
+                    'size' => $ram->getSize()
+                ];
+            }
+
+            return $rams_list;
+        }
 
         return $rams;
     }
@@ -79,8 +93,8 @@ class Ram implements RamContract
     public function insert($data)
     {
         $ram = new ServerRamEntity();
-        $ram->setServerId($data['server_id']);
-        $ram->setUserId($data['user_id']);
+        $ram->setServer($data['server']);
+        $ram->setUser($data['user']);
         $ram->setType($data['type']);
         $ram->setSize($data['size']);
         $this->entityManager->persist($ram);

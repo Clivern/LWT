@@ -48,11 +48,27 @@ class Server implements ServerContract
      * @param  integer  $userId
      * @param  integer $currentPage
      * @param  integer $perPage
+     * @param  boolean $asArray
      * @return array
      */
-    public function getByUserId($userId, $currentPage = 1, $perPage = 10)
+    public function getByUserId($userId, $currentPage = 1, $perPage = 10, $asArray = false)
     {
         $servers = $this->entityManager->getRepository(ServerEntity::class)->findBy(['userId' => $userId]);
+
+        if( $asArray ){
+            $servers_list = [];
+            foreach ($servers as $server) {
+                $servers_list[] = [
+                    'id' => $server->getId(),
+                    'asset_id' => $server->getAssetId(),
+                    'name' => $server->getName(),
+                    'brand' => $server->getBrand(),
+                    'price' => $server->getPrice()
+                ];
+            }
+
+            return $servers_list;
+        }
 
         return $servers;
     }
@@ -93,7 +109,7 @@ class Server implements ServerContract
     {
         $server = new ServerEntity();
         $server->setAssetId($data['asset_id']);
-        $server->setUserId($data['user_id']);
+        $server->setUser($data['user']);
         $server->setName($data['name']);
         $server->setBrand($data['brand']);
         $server->setPrice($data['price']);

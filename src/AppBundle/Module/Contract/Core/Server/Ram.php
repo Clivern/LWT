@@ -25,9 +25,10 @@ interface Ram
      * @param  integer  $serverId
      * @param  integer $currentPage
      * @param  integer $perPage
+     * @param  boolean $asArray
      * @return array
      */
-    public function getByServerId($serverId, $currentPage = 1, $perPage = 10);
+    public function getByServerId($serverId, $currentPage = 1, $perPage = 10, $asArray = false);
 
     /**
      * Get by id

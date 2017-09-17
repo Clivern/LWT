@@ -42,7 +42,7 @@ class Response implements ResponseContract
     public function setPayload($data, $asArray = false)
     {
         if( $asArray ){
-            $this->response['payload'][] = $data;
+            $this->response['payload'] = $data;
         }else{
             foreach ($data as $key => $value) {
                 $this->response['payload'][$key] = $value;

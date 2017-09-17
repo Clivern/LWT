@@ -140,6 +140,7 @@ class User implements UserContract
             if( isset($newData['email']) ){
                 $user->setEmail($newData['email']);
             }
+            $user->setUpdatedAt(new \DateTime());
             $this->entityManager->flush();
 
             return true;
@@ -170,6 +171,7 @@ class User implements UserContract
 
                 $user->setApiToken($new_token);
                 $user->setApiTokenExpire($token_expire);
+                $user->setUpdatedAt(new \DateTime());
                 $this->entityManager->flush();
                 return true;
             }

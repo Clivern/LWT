@@ -65,13 +65,15 @@ class UserController extends Controller
     }
 
     /**
+     * Update User Action
+     *
      * @Route("/api/user/{id}", requirements={"id": "\d+"}, name="api_v1_user_controller_update_action")
      * @Method({"PUT"})
      */
     public function updateAction(Request $request)
     {
         // Make sure that request come from profile owner
-        if( $this->auth->getCurrentUser()->getId() != $request->get('id') ){
+        if( $this->auth->getCurrentUser()->getId() != $request->get('id', '') ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Invalid Request.')]);
             return new JsonResponse($this->response->getResponse());
@@ -125,14 +127,14 @@ class UserController extends Controller
         }
 
         // Check if Username is used
-        if( $this->user->chechUsername($request->get('username'), $this->auth->getCurrentUser()->getId()) ){
+        if( $this->user->chechUsername($request->get('username', ''), $this->auth->getCurrentUser()->getId()) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Error! Username is already used.')]);
             return new JsonResponse($this->response->getResponse());
         }
 
         // Check if email is used
-        if( $this->user->checkEmail($request->get('email'), $this->auth->getCurrentUser()->getId()) ){
+        if( $this->user->checkEmail($request->get('email', ''), $this->auth->getCurrentUser()->getId()) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Error! Email is already used.')]);
             return new JsonResponse($this->response->getResponse());
@@ -140,9 +142,9 @@ class UserController extends Controller
 
         // Update Profile
         $status = $this->user->updateById($request->get('id'), [
-            'name' => $request->get('name'),
-            'username' => $request->get('username'),
-            'email' => $request->get('email')
+            'name' => $request->get('name', ''),
+            'username' => $request->get('username', ''),
+            'email' => $request->get('email', '')
         ]);
 
         if( $status ){

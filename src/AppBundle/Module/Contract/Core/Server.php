@@ -25,9 +25,10 @@ interface Server
      * @param  integer  $userId
      * @param  integer $currentPage
      * @param  integer $perPage
+     * @param  boolean $asArray
      * @return array
      */
-    public function getByUserId($userId, $currentPage = 1, $perPage = 10);
+    public function getByUserId($userId, $currentPage = 1, $perPage = 10, $asArray = false);
 
     /**
      * Get by id
