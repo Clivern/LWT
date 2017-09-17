@@ -1,7 +1,16 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title %}LWT{% endblock %}
+{% block title %}403 | LWT{% endblock %}
 
 {% block content %}
-    <p>Hello World</p>
+  <div class="main-container">
+	<div class="ui equal width grid">
+	  <div class="column"></div>
+	  <div class="column">
+	  	<h1>403</h1>
+		<h3>{{ "Forbidden: You don't have permission to access"|trans }}</h3>
+	  </div>
+	  <div class="column"></div>
+	</div>
+  </div>
 {% endblock %}

@@ -1,7 +1,17 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title %}LWT{% endblock %}
+{% block title %}Error | LWT{% endblock %}
 
 {% block content %}
-    <p>Hello World</p>
+  <div class="main-container">
+	<div class="ui equal width grid">
+	  <div class="column"></div>
+	  <div class="column">
+	  	<h1>{{ "Error"|trans }}</h1>
+		<h3>{{ "Oop! Something Goes Wrong."|trans }}</h3>
+	  </div>
+	  <div class="column"></div>
+	</div>
+  </div>
+
 {% endblock %}

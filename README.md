@@ -223,7 +223,6 @@ php bin/console doctrine:fixtures:load
     ErrorLog /var/log/apache2/lwt_error.log
     CustomLog /var/log/apache2/lwt_access.log combined
 </VirtualHost>
-
 ```
 
 Please Don't forget to add lwt.com on your hosts file
