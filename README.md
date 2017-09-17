@@ -209,7 +209,7 @@ php bin/console doctrine:fixtures:load
 ```
 
 - You need to create a [virtual host](http://symfony.com/doc/current/setup/web_server_configuration.html) for this project and have it always running.
-```config
+```
 <VirtualHost *:80>
     ServerName lwt.com
     ServerAlias www.lwt.com
