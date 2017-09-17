@@ -166,7 +166,7 @@ docker-compose ps
 docker-compose down
 ```
 
-[*Please check this docs to manage docker as a non-root user.*](https://docs.docker.com/engine/installation/linux/linux-postinstall/) because if it runs with the root user, you will have to use `sudo ...` in all previous commands.
+[*Please check these docs to manage docker as a non-root user.*](https://docs.docker.com/engine/installation/linux/linux-postinstall/) because if it runs with the root user, you will have to use `sudo ...` in all previous commands.
 
 
 Alternative
@@ -231,6 +231,58 @@ Please Don't forget to add lwt.com on your hosts file
 
 Now when we visit `lwt.com` it should work!
 
+## REST API
+Application has a REST API to be used by frontend so you can use these APIs to build Single Page Application or even consume these APIs from other application or service.
+
+- To create a server:
+```bash
+curl --request POST --url http://lwt.com/api/v1/server --header 'X-AUTH-TOKEN: api_token_here' --data 'name=R234&brand=HP&asset_id=123&price=200.35'
+```
+
+- To get your servers:
+```bash
+curl --request GET --url http://lwt.com/api/v1/server --header 'X-AUTH-TOKEN: api_token_here'
+```
+
+- To get server with id:
+```bash
+curl --request GET --url http://lwt.com/api/v1/server/{server_id} --header 'X-AUTH-TOKEN: api_token_here'
+```
+
+- To delete server with id:
+```bash
+curl --request DELETE --url http://lwt.com/api/v1/server/{server_id} --header 'X-AUTH-TOKEN: api_token_here'
+```
+
+- To get Server Rams:
+```bash
+curl --request GET --url http://lwt.com/api/v1/server/{server_id}/ram --header 'X-AUTH-TOKEN: api_token_here'
+```
+
+- To get Server Ram:
+```bash
+curl --request GET --url http://lwt.com/api/v1/server/{server_id}/ram/{ram_id} --header 'X-AUTH-TOKEN: api_token_here'
+```
+
+- To create Server Ram:
+```bash
+curl --request POST --url http://lwt.com/api/v1/server/{server_id}/ram --header 'X-AUTH-TOKEN: api_token_here' --data 'type=DDR3&size=2'
+```
+
+- To delete Server Ram:
+```bash
+curl --request DELETE --url http://lwt.com/api/v1/server/{server_id}/ram/{ram_id} --header 'X-AUTH-TOKEN: api_token_here'
+```
+
+- To get current refresh token:
+```bash
+curl --request GET --url http://lwt.com/api/v1/refresh_token --header 'X-AUTH-TOKEN: api_token_here'
+```
+
+- To Get your new API token in case it is expired:
+```
+curl --request POST --url http://lwt.com/api/v1/api_token --header 'X-AUTH-TOKEN: api_token_here' --data 'refresh_token=sgshdhd..'
+```
 
 ## Misc
 
