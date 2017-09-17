@@ -163,9 +163,7 @@ class RamController extends Controller
                 'rule' => 'Choice',
                 'parameters' => ['DDR3', 'DDR4'],
                 'constraint' => ['message' => $this->get('translator')->trans('Ram type must be DDR3 or DDR4.')]
-            ],
-
-            [
+            ],[
                 'value' => $request->get('size', ''),
                 'rule' => 'NotBlank',
                 'constraint' => ['message' => $this->get('translator')->trans('Ram size must be provided.')]

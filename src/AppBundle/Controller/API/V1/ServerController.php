@@ -140,10 +140,7 @@ class ServerController extends Controller
                 'rule' => 'Type',
                 'parameters' => ['type' => 'alnum'],
                 'constraint' => ['message' => $this->get('translator')->trans('Server name must be alphanumeric.')]
-            ],
-
-
-            [
+            ],[
                 'value' => $request->get('brand', ''),
                 'rule' => 'NotBlank',
                 'constraint' => ['message' => $this->get('translator')->trans('Server brand must be provided.')]
@@ -157,9 +154,7 @@ class ServerController extends Controller
                 'rule' => 'Type',
                 'parameters' => ['type' => 'alnum'],
                 'constraint' => ['message' => $this->get('translator')->trans('Server brand must be alphanumeric.')]
-            ],
-
-            [
+            ],[
                 'value' => $request->get('asset_id', ''),
                 'rule' => 'NotBlank',
                 'constraint' => ['message' => $this->get('translator')->trans('Server asset id must be provided.')]
@@ -178,9 +173,7 @@ class ServerController extends Controller
                 'rule' => 'GreaterThan',
                 'parameters' => ['value' => 0],
                 'constraint' => ['message' => $this->get('translator')->trans('Server asset id must be greater than zero.')]
-            ],
-
-            [
+            ],[
                 'value' => $request->get('price', ''),
                 'rule' => 'NotBlank',
                 'constraint' => ['message' => $this->get('translator')->trans('Server price must be provided.')]
