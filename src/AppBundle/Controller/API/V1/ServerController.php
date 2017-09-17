@@ -75,7 +75,7 @@ class ServerController extends Controller
         // Make sure that user owns this server
         if( !$this->server->userOwns($this->auth->getCurrentUser()->getId(), $request->attributes->get('id', '')) ){
             $this->response->setStatus(false);
-            $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Invalid Request.56')]);
+            $this->response->setMessage(['type' => 'error', 'message' => $this->get('translator')->trans('Invalid Request.')]);
             return new JsonResponse($this->response->getResponse());
         }
 
