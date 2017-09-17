@@ -1,6 +1,6 @@
 ## LWT
 
-:wolf: Simple ERP Application In Symfony.
+:wolf: Simple ERP Application Skelton In Symfony 3.3.9.
 
 *Current version: Under Development*
 
