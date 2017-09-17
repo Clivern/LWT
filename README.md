@@ -19,6 +19,7 @@ In order to run this app do the following:
 git clone https://github.com/Clivern/LWT.git lwt
 cd lwt
 composer install
+# You can ignore node packages installation if you will not edit CSS & JS Files
 npm install
 ```
 
@@ -67,6 +68,7 @@ After you have `vagrant` and `VirtualBox` up and running, do the following steps
 git clone https://github.com/Clivern/LWT.git lwt
 cd lwt
 composer install
+# You can ignore node packages installation if you will not edit CSS & JS Files
 npm install
 vagrant up
 ```
@@ -111,10 +113,11 @@ Please feel free to check `Homestead.yaml` file in case you need to customize yo
 
 ### With Docker
 
-- Get the application code and install php dependencies and node packages.
+- Get the application code and node packages.
 ```bash
 git clone https://github.com/Clivern/LWT.git lwt
 cd lwt
+# You can ignore node packages installation if you will not edit CSS & JS Files
 npm install
 ```
 
@@ -180,6 +183,7 @@ In case you have A LAMP environment on your machine, Please follow the following
 git clone https://github.com/Clivern/LWT.git lwt
 cd lwt
 composer install
+# You can ignore node packages installation if you will not edit CSS & JS Files
 npm install
 ```
 
