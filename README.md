@@ -50,7 +50,7 @@ php bin/console doctrine:fixtures:load
 php bin/console server:run
 ```
 
-Open your browser and access the `http://localhost:8000/`
+Open your browser and access the `http://127.0.0.1:8000`
 
 *Please Note That* You can login with `clivern/clivern` As we already imported that user in previous steps.
 
