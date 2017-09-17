@@ -2,7 +2,7 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: homestead
+    database_name: symfony
     database_user: travis
     database_password:
     mailer_transport: smtp
