@@ -3,7 +3,7 @@
 namespace AppBundle\Module\Service\Core;
 
 use AppBundle\Module\Contract\Core\Config as ConfigContract;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Entity\Config as ConfigEntity;
 
 /**
@@ -20,16 +20,16 @@ class Config implements ConfigContract
     protected $configs = [];
 
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     protected $entityManager;
 
     /**
      * Service Constructor
      *
-     * @param EntityManager $entityManager
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }

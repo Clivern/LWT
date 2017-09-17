@@ -3,7 +3,7 @@
 namespace AppBundle\Module\Service\Core;
 
 use AppBundle\Module\Contract\Core\User as UserContract;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Entity\User as UserEntity;
 
 /**
@@ -14,16 +14,16 @@ use AppBundle\Entity\User as UserEntity;
 class User implements UserContract
 {
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     protected $entityManager;
 
     /**
      * Service Constructor
      *
-     * @param EntityManager $entityManager
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }

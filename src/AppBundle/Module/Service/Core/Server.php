@@ -3,7 +3,7 @@
 namespace AppBundle\Module\Service\Core;
 
 use AppBundle\Module\Contract\Core\Server as ServerContract;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Entity\Server as ServerEntity;
 
 /**
@@ -14,16 +14,16 @@ use AppBundle\Entity\Server as ServerEntity;
 class Server implements ServerContract
 {
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     protected $entityManager;
 
     /**
      * Service Constructor
      *
-     * @param EntityManager $entityManager
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }

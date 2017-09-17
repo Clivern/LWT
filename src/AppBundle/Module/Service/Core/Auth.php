@@ -3,10 +3,10 @@
 namespace AppBundle\Module\Service\Core;
 
 use AppBundle\Module\Contract\Core\Auth as AuthContract;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Entity\User as UserEntity;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
-use Symfony\Component\Security\Core\Encoder\EncoderFactory;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
@@ -18,17 +18,17 @@ class Auth implements AuthContract
 {
 
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     protected $entityManager;
 
     /**
-     * @var EncoderFactory
+     * @var EncoderFactoryInterface
      */
     protected $encoderFactory;
 
     /**
-     * @var TokenStorage
+     * @var TokenStorageInterface
      */
     protected $tokenStorage;
 
@@ -40,11 +40,11 @@ class Auth implements AuthContract
     /**
      * ManualPasswordValidator constructor.
      *
-     * @param EntityManager $entityManager
-     * @param TokenStorage $tokenStorage
-     * @param EncoderFactory $encoderFactory
+     * @param EntityManagerInterface $entityManager
+     * @param TokenStorageInterface $tokenStorage
+     * @param EncoderFactoryInterface $encoderFactory
      */
-    public function __construct(EntityManager $entityManager, TokenStorage $tokenStorage, EncoderFactory $encoderFactory)
+    public function __construct(EntityManagerInterface $entityManager, TokenStorageInterface $tokenStorage, EncoderFactoryInterface $encoderFactory)
     {
         $this->entityManager = $entityManager;
         $this->encoderFactory = $encoderFactory;

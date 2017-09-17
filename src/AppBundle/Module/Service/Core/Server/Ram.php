@@ -3,7 +3,7 @@
 namespace AppBundle\Module\Service\Core\Server;
 
 use AppBundle\Module\Contract\Core\Server\Ram as RamContract;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Entity\ServerRam as ServerRamEntity;
 
 /**
@@ -14,16 +14,16 @@ use AppBundle\Entity\ServerRam as ServerRamEntity;
 class Ram implements RamContract
 {
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     protected $entityManager;
 
     /**
      * Service Constructor
      *
-     * @param EntityManager $entityManager
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
