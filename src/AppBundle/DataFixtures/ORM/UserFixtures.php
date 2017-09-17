@@ -33,7 +33,7 @@ class UserFixtures extends Fixture
         $admin->setApiTokenExpire(time() + (24 * 60 * 60));
         $admin->setRememberToken('');
         $encoder = $this->container->get('security.password_encoder');
-        $password = $encoder->encodePassword($admin, 'pass_1234');
+        $password = $encoder->encodePassword($admin, 'clivern');
         $admin->setPassword($password);
         $manager->persist($admin);
         $manager->flush();
