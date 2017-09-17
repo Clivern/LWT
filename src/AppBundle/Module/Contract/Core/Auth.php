@@ -41,4 +41,19 @@ interface Auth
      * @return mixed
      */
     public function isLogged();
+
+    /**
+     * Get by api token
+     *
+     * @param  string $apiToken
+     * @return mixed
+     */
+    public function getUserByApiToken($apiToken);
+
+    /**
+     * Get Current User
+     *
+     * @return UserEntity
+     */
+    public function getCurrentUser();
 }

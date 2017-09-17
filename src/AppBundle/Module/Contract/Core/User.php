@@ -48,7 +48,7 @@ interface User
      * @param  string $username
      * @return mixed
      */
-    public function chechUsername($username);
+    public function chechUsername($username, $userId);
 
     /**
      * Check if email exist
@@ -56,7 +56,7 @@ interface User
      * @param  string $email
      * @return mixed
      */
-    public function checkEmail($email);
+    public function checkEmail($email, $userId);
 
     /**
      * Check if api token exist

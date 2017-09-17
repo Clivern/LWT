@@ -59,12 +59,14 @@ class AccessTokenSubscriber implements EventSubscriberInterface
 
         $target_action = get_class($controller[0]) . '@' . $controller[1];
 
-        if( (strpos($target_action, 'AppBundle\Controller\API') === false) ){
+        // Bypass auth action
+        if( (strpos($target_action, 'LoginController@authAction') !== false) ){
+            $this->auth->isLogged();
             return;
         }
 
-        // Bypass auth action
-        if( (strpos($target_action, 'LoginController@authAction') !== false) ){
+        if( (strpos($target_action, 'AppBundle\Controller\API') === false) ){
+            $this->auth->isLogged();
             return;
         }
 
@@ -74,7 +76,16 @@ class AccessTokenSubscriber implements EventSubscriberInterface
             $access_token = $event->getRequest()->headers->get('X-AUTH-TOKEN');
         }
 
-        if( !$access_token || ($access_token != 'Access') ){
+        if( empty($access_token) ){
+            $this->response->setStatus(false);
+            $this->response->setMessage(['type' => 'error', 'message' => 'Access Denied! Access Token Not Provided.']);
+            echo json_encode($this->response->getResponse());
+            die();
+        }
+
+        $user = $this->auth->getUserByApiToken($access_token);
+
+        if( empty($user) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => 'Access Denied! Invalid or Expired Access Token.']);
             echo json_encode($this->response->getResponse());

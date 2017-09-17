@@ -120,13 +120,44 @@ class Auth implements AuthContract
      */
     public function isLogged()
     {
-        $user = $this->tokenStorage->getToken()->getUser();
+        if( $this->tokenStorage->getToken() ){
+            $user = $this->tokenStorage->getToken()->getUser();
+        }else{
+            $user = false;
+        }
 
-        return (!empty($user)) ? $user : false;
+        $this->currentUser = (!empty($user) && ($user != 'anon.')) ? $user : false;
+
+        return $this->currentUser;
     }
 
     /**
-     * Get use by username
+     * Get by api token
+     *
+     * @param  string $apiToken
+     * @return mixed
+     */
+    public function getUserByApiToken($apiToken)
+    {
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['apiToken' => $apiToken]);
+
+        $this->currentUser = (!empty($user)) ? $user : false;
+
+        return $this->currentUser;
+    }
+
+    /**
+     * Get Current User
+     *
+     * @return UserEntity
+     */
+    public function getCurrentUser()
+    {
+        return $this->currentUser;
+    }
+
+    /**
+     * Get user by username
      *
      * @param string $username
      * @return mixed
@@ -139,7 +170,7 @@ class Auth implements AuthContract
     }
 
     /**
-     * Get use by id
+     * Get user by id
      *
      * @param integer $id
      * @return mixed

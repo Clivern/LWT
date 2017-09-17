@@ -86,11 +86,11 @@ class User implements UserContract
      * @param  string $username
      * @return mixed
      */
-    public function chechUsername($username)
+    public function chechUsername($username, $userId)
     {
         $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['username' => $username]);
 
-        return (!empty($user)) ? true : false;
+        return (!empty($user) && ($user->getId() != $userId)) ? true : false;
     }
 
     /**
@@ -99,11 +99,11 @@ class User implements UserContract
      * @param  string $email
      * @return mixed
      */
-    public function checkEmail($email)
+    public function checkEmail($email, $userId)
     {
         $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['email' => $email]);
 
-        return (!empty($user)) ? true : false;
+        return (!empty($user) && ($user->getId() != $userId)) ? true : false;
     }
 
     /**
