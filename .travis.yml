@@ -1,5 +1,4 @@
 language: php
-sudo: false
 dist: precise
 
 php:
@@ -27,7 +26,7 @@ before_script:
   - php bin/console doctrine:fixtures:load -n
 
 script:
-  - ./vendor/bin/simple-phpunit --coverage-text
+  - ./vendor/bin/simple-phpunit --coverage-text --coverage-clover=coverage.clover
   # this checks that the YAML config files contain no syntax errors
   - ./bin/console lint:yaml app/config
   # this checks that the Twig template files contain no syntax errors
