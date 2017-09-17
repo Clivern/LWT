@@ -1,4 +1,5 @@
-## LWT
+LWT
+===
 
 :wolf: Simple ERP Application Skelton In Symfony 3.3.9.
 
@@ -6,12 +7,13 @@
 
 [![Build Status](https://travis-ci.org/Clivern/LWT.svg?branch=master)](https://travis-ci.org/Clivern/LWT)
 
-## Installation
+Installation
+------------
 
 In order to run this app do the following:
 
-1-Minute Install
-----------------
+### 1-Minute Install
+
 - Get the application code and install php dependencies and node packages.
 ```bash
 git clone https://github.com/Clivern/LWT.git lwt
@@ -55,8 +57,8 @@ Open your browser and access the `http://127.0.0.1:8000`
 *Please Note That* You can login with `clivern/clivern` As we already imported that user in previous steps.
 
 
-With Vagrant
-------------
+### With Vagrant
+
 Please note that `vagrant` need a provider in order to run the `VM`. In this project, I use `VirtualBox` as provider.
 After you have `vagrant` and `VirtualBox` up and running, do the following steps:
 
@@ -107,8 +109,8 @@ vagrant halt
 Please feel free to check `Homestead.yaml` file in case you need to customize your vagrant machine.
 
 
-With Docker
-------------
+### With Docker
+
 - Get the application code and install php dependencies and node packages.
 ```bash
 git clone https://github.com/Clivern/LWT.git lwt
@@ -169,8 +171,8 @@ docker-compose down
 [*Please check these docs to manage docker as a non-root user.*](https://docs.docker.com/engine/installation/linux/linux-postinstall/) because if it runs with the root user, you will have to use `sudo ...` in all previous commands.
 
 
-Alternative
------------
+### Alternative
+
 In case you have A LAMP environment on your machine, Please follow the following steps:
 
 - Get the application code and install php dependencies and node packages.
@@ -231,7 +233,8 @@ Please Don't forget to add lwt.com on your hosts file
 
 Now when we visit `lwt.com` it should work!
 
-## REST API
+REST API
+--------
 Application has a REST API to be used by frontend so you can use these APIs to build Single Page Application or even consume these APIs from other application or service.
 
 - To create a server:
@@ -284,10 +287,10 @@ curl --request GET --url http://lwt.com/api/v1/refresh_token --header 'X-AUTH-TO
 curl --request POST --url http://lwt.com/api/v1/api_token --header 'X-AUTH-TOKEN: api_token_here' --data 'refresh_token=sgshdhd..'
 ```
 
-## Misc
+Misc
+----
 
-Notes
------
+### Notes
 - If the *npm install* command fails or hangs, Do the following.
 ```
 sudo ln -s /usr/bin/nodejs /usr/bin/node
@@ -298,8 +301,8 @@ sudo ln -s /usr/bin/nodejs /usr/bin/node
 npm run dev
 ```
 
-Testing
--------
+### Testing
+
 To run test cases & get test coverage reports run the following command in app root
 ```bash
 ./vendor/bin/simple-phpunit --coverage-text=./coverage.txt --coverage-html ./coverage
@@ -312,15 +315,14 @@ or to view the coverage report
 
 Please note that, you need `xdebug` in order to get coverage reports.
 
-Changelog
----------
+### Changelog
+
 Version 1.0.0:
 ```
 Coming Soon :D
 ```
 
-Acknowledgements
-----------------
+### Acknowledgements
 
 © 2017, Clivern. Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
