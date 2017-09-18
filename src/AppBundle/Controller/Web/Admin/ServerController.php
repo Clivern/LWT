@@ -58,7 +58,8 @@ class ServerController extends Controller
     {
         return $this->render('admin/server-list.html.twig', [
             'site_title' => $this->config->getByKey('_site_title', 'LWT'),
-            'current_user' => $this->auth->getCurrentUser()
+            'current_user' => $this->auth->getCurrentUser(),
+            'servers' => $this->server->getByUserId($this->auth->getCurrentUser()->getId(), 1, 100, true)
         ]);
     }
 
@@ -82,9 +83,14 @@ class ServerController extends Controller
      */
     public function viewAction(Request $request)
     {
+        if( !$this->server->userOwns($this->auth->getCurrentUser()->getId(), $request->attributes->get('id', '')) ){
+            throw $this->createNotFoundException('This page does not exist.');
+        }
+
         return $this->render('admin/server-view.html.twig', [
             'site_title' => $this->config->getByKey('_site_title', 'LWT'),
-            'current_user' => $this->auth->getCurrentUser()
+            'current_user' => $this->auth->getCurrentUser(),
+            'server' => $this->server->getById($request->attributes->get('id', ''))
         ]);
     }
 }

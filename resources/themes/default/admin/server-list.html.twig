@@ -4,36 +4,45 @@
 
 {% block content %}
 
-  <div class="main-container">
-    <br/>
-	<div class="ui two column centered grid">
-	  <div class="column">
-	  	<div class="ui horizontal divider">
-    		{{ "Servers"|trans }}
-  		</div>
-  		<div class="ui teal segment">
-			<table class="ui celled striped table">
-			  <tbody>
-			    <tr>
-			      <td class="collapsing">
-			        <i class="server icon"></i> RTE
-			      </td>
-			      <td>Test</td>
-			      <td class="right aligned collapsing">Data</td>
-			    </tr>
-			    <tr>
-			      <td>
-			        <i class="server icon"></i> RTE
-			      </td>
-			      <td>Test</td>
-			      <td class="right aligned">Data</td>
-			    </tr>
-			  </tbody>
-			</table>
-		</div>
-	  </div>
-	</div>
-    <br/>
-  </div>
+    <div class="main-container">
+        <br/>
+        <div class="ui one column centered grid">
+            <div class="column">
+                <div class="ui horizontal divider">{{ "Servers"|trans }}</div>
+                <div class="ui teal segment" style="align:center">
+                    <table class="ui celled padded table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Asset ID</th>
+                                <th>Brand</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if servers %}
+                                {% for server in servers %}
+                                    <tr>
+                                        <td><h2 class="ui center aligned header">{{ server['name']|e }}</h2></td>
+                                        <td class="center aligned">{{ server['asset_id']|e }}</td>
+                                        <td class="center aligned">{{ server['brand']|e }}</td>
+                                        <td class="center aligned"><a href="{{ url('web_server_controller_view', {"id": server['id']}) }}" class="tiny ui button">View</a></td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="4" style="text-align:center"><p>No Servers Yet.</p></td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align:center">
+                    <a href="{{ url('web_server_controller_add') }}" class="positive ui button">New Server</a>
+                </div>
+            </div>
+        </div>
+        <br/>
+    </div>
 
 {% endblock %}

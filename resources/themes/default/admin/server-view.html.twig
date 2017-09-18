@@ -1,7 +1,30 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title %}LWT{% endblock %}
+{% block title %}{{ site_title }}{% endblock %}
 
 {% block content %}
+
+    <div class="main-container">
+        <br/>
+        <div class="ui two column centered grid">
+            <div class="column">
+                <div class="ui horizontal divider">
+                    {{ "Server Info"|trans }}
+                </div>
+                <div class="ui teal segment">
+
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui horizontal divider">
+                    {{ "Server Rams"|trans }}
+                </div>
+                <div class="ui teal segment">
+
+                </div>
+            </div>
+        </div>
+        <br/>
+    </div>
 
 {% endblock %}

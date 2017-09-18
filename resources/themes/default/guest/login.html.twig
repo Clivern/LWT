@@ -3,35 +3,33 @@
 {% block title %}{{ site_title }}{% endblock %}
 
 {% block content %}
-  <div class="main-container">
-    <br/>
-	<div class="ui two column centered grid">
-	  <div class="column">
-	  	<div style="text-align: center">
-	  		<img src="{{ asset('assets/images/logo.png') }}" class="ui centered tiny image">
-	  	</div>
-	  	<br/>
-	  	<div class="ui horizontal divider">
-    		{{ "Login"|trans }}
-  		</div>
-  		<div class="ui olive segment">
-			<form class="ui form" id="login_form" method="post" action="{{ url('api_v1_login_controller_auth_action') }}">
-			  	<div class="field">
-			    	<label>{{ "Username"|trans }}</label>
-			    	<input type="text" name="username" required="required">
-			  	</div>
-			  	<div class="field">
-			    	<label>{{ "Password"|trans }}</label>
-			    	<input type="password" name="password" required="required">
-			  	</div>
-			  	<div style="text-align: center">
-			  		<button class="ui button" type="reset">{{ "Reset"|trans }}</button>
-			  		<button class="ui secondary button" type="submit">{{ "Login"|trans }}</button>
-				</div>
-			</form>
-		</div>
-	  </div>
-	</div>
-    <br/>
-  </div>
+    <div class="main-container">
+        <br/>
+        <div class="ui two column centered grid">
+            <div class="column">
+                <div style="text-align: center">
+                    <img src="{{ asset('assets/images/logo.png') }}" class="ui centered tiny image">
+                </div>
+                <br/>
+                <div class="ui horizontal divider">{{ "Login"|trans }}</div>
+                <div class="ui olive segment">
+                    <form class="ui form" id="login_form" method="post" action="{{ url('api_v1_login_controller_auth_action') }}">
+                        <div class="field">
+                            <label>{{ "Username"|trans }}</label>
+                            <input type="text" name="username" required="required">
+                        </div>
+                        <div class="field">
+                            <label>{{ "Password"|trans }}</label>
+                            <input type="password" name="password" required="required">
+                        </div>
+                        <div style="text-align: center">
+                            <button class="ui button" type="reset">{{ "Reset"|trans }}</button>
+                            <button class="ui secondary button" type="submit">{{ "Login"|trans }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br/>
+    </div>
 {% endblock %}
