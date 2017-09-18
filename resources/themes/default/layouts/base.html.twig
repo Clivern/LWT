@@ -1,21 +1,22 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{ block('title') }}</title>
-    <meta name="description" content="description here">
-    <meta name="keywords" content="keywords, here">
-    <meta name="csrf-token" content="">
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/ico" href="{{ absolute_url(asset('assets/images/logo.png')) }}" />
-    {% include 'partials/header.html.twig' %}
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ block('title') }}</title>
+        <meta name="description" content="description here">
+        <meta name="keywords" content="keywords, here">
+        <meta name="csrf-token" content="">
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/ico" href="{{ absolute_url(asset('assets/images/logo.png')) }}" />
+        {% include 'partials/header.html.twig' %}
+    </head>
 
-<body>
-    {% include 'partials/top-menu.html.twig' %}
-    {% block content %}{% endblock %}
-    {% include 'partials/bottom-menu.html.twig' %}
-    {% include 'partials/footer.html.twig' %}
+    <body>
+        {% include 'partials/top-menu.html.twig' %}
+        {% block content %}{% endblock %}
+        {% include 'partials/bottom-menu.html.twig' %}
+        {% include 'partials/footer.html.twig' %}
+    </body>
 </html>
