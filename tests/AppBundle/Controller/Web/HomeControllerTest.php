@@ -16,6 +16,6 @@ class HomeControllerTest extends WebTestCase
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('LWT', $crawler->filter('div.title')->text());
+        $this->assertContains('Know More', $crawler->filter('a.tiny')->text());
     }
 }
