@@ -12,11 +12,10 @@ use AppBundle\Entity\User as UserEntity;
  */
 class UserControllerTest extends WebTestCase
 {
-
     /**
      * @var UserEntity
      */
-    protected $user;
+    protected $entityManager;
 
     /**
      * Class Constructor
@@ -24,8 +23,7 @@ class UserControllerTest extends WebTestCase
     public function __construct()
     {
         $client = static::createClient();
-        $em = $client->getContainer()->get('doctrine.orm.entity_manager');
-        $this->user = $em->getRepository(UserEntity::class)->findOneBy(['username' => 'clivern']);
+        $this->entityManager = $client->getContainer()->get('doctrine.orm.entity_manager');
     }
 
     /**
@@ -35,10 +33,12 @@ class UserControllerTest extends WebTestCase
      */
     public function testUpdateSuccess()
     {
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['username' => 'clivern']);
+
         $client = static::createClient();
         $client->request(
             'PUT',
-            '/api/user/' . $this->user->getId() . '?api_token=' . $this->user->getApiToken(),
+            '/api/user/' . $user->getId() . '?api_token=' . $user->getApiToken(),
             ['name' => 'Clivern', 'username' => 'clivern', 'email' => 'hello@clivern.com']
         );
         $this->assertContains('"success":true', $client->getResponse()->getContent());
@@ -51,10 +51,12 @@ class UserControllerTest extends WebTestCase
      */
     public function testUpdateFailure()
     {
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['username' => 'clivern']);
+
         $client = static::createClient();
         $client->request(
             'PUT',
-            '/api/user/' . $this->user->getId() . '?api_token=' . $this->user->getApiToken(),
+            '/api/user/' . $user->getId() . '?api_token=' . $user->getApiToken(),
             ['name' => ' ', 'username' => 'clivern', 'email' => 'hello@clivern.com']
         );
         $this->assertContains('"success":false', $client->getResponse()->getContent());

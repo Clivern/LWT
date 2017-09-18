@@ -13,16 +13,10 @@ use AppBundle\Entity\Config as ConfigEntity;
  */
 class LoginControllerTest extends WebTestCase
 {
-
     /**
      * @var UserEntity
      */
-    protected $user;
-
-    /**
-     * @var ConfigEntity
-     */
-    protected $config;
+    protected $entityManager;
 
     /**
      * Class Constructor
@@ -30,9 +24,7 @@ class LoginControllerTest extends WebTestCase
     public function __construct()
     {
         $client = static::createClient();
-        $em = $client->getContainer()->get('doctrine.orm.entity_manager');
-        $this->user = $em->getRepository(UserEntity::class)->findOneBy(['username' => 'clivern']);
-        $this->config = $em->getRepository(ConfigEntity::class)->findOneBy(['configKey' => '_api_refresh_token']);
+        $this->entityManager = $client->getContainer()->get('doctrine.orm.entity_manager');
     }
 
     /**
@@ -74,11 +66,14 @@ class LoginControllerTest extends WebTestCase
      */
     public function testGetAccessTocken()
     {
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['username' => 'clivern']);
+        $config = $this->entityManager->getRepository(ConfigEntity::class)->findOneBy(['configKey' => '_api_refresh_token']);
+
         $client = static::createClient();
         $client->request(
             'POST',
-            '/api/v1/api_token' . '?api_token=' . $this->user->getApiToken(),
-            ['refresh_token' => $this->config->getConfigValue()]
+            '/api/v1/api_token' . '?api_token=' . $user->getApiToken(),
+            ['refresh_token' => $config->getConfigValue()]
         );
         $this->assertContains('"success":true', $client->getResponse()->getContent());
     }
@@ -90,10 +85,13 @@ class LoginControllerTest extends WebTestCase
      */
     public function testGetRefreshTocken()
     {
+        $user = $this->entityManager->getRepository(UserEntity::class)->findOneBy(['username' => 'clivern']);
+        $config = $this->entityManager->getRepository(ConfigEntity::class)->findOneBy(['configKey' => '_api_refresh_token']);
+
         $client = static::createClient();
         $client->request(
             'GET',
-            '/api/v1/refresh_token' . '?api_token=' . $this->user->getApiToken()
+            '/api/v1/refresh_token' . '?api_token=' . $user->getApiToken()
         );
         $this->assertContains('"success":true', $client->getResponse()->getContent());
     }
