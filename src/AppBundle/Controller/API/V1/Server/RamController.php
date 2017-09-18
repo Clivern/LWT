@@ -195,8 +195,8 @@ class RamController extends Controller
         $status = $this->ram->insert([
             'server' => $this->server->getById($request->attributes->get('server_id', '')),
             'user' => $this->auth->getCurrentUser(),
-            'type' => $request->request->get('type', ''),
-            'size' => $request->request->get('size', '')
+            'type' => trim($request->request->get('type', '')),
+            'size' => trim($request->request->get('size', ''))
         ]);
 
         if( $status ){

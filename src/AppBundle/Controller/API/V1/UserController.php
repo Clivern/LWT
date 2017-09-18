@@ -142,9 +142,9 @@ class UserController extends Controller
 
         // Update Profile
         $status = $this->user->updateById($request->attributes->get('id'), [
-            'name' => $request->request->get('name', ''),
-            'username' => $request->request->get('username', ''),
-            'email' => $request->request->get('email', '')
+            'name' => trim($request->request->get('name', '')),
+            'username' => trim($request->request->get('username', '')),
+            'email' => trim($request->request->get('email', ''))
         ]);
 
         if( $status ){

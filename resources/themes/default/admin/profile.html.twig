@@ -10,7 +10,7 @@
             <div class="column">
                 <div class="ui horizontal divider">{{ "My Profile"|trans }}</div>
                 <div class="ui teal segment">
-                    <form class="ui form" id="profile_form" method="post" action="{{ url('web_profile_controller_update') }}">
+                    <form class="ui form" id="profile_form" method="post" action="{{ url('api_v1_user_controller_update_action', {'id': current_user.getId()}) }}">
                         <div class="field">
                             <label>{{ "Name"|trans }}</label>
                             <input type="text" name="name" value="{{ current_user.getName()|e }}" required="required">

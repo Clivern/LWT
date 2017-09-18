@@ -240,6 +240,8 @@ REST API
 --------
 Application has a REST API to be used by frontend so you can use these APIs to build Single Page Application or even consume these APIs from other application or service.
 
+- To get your API Key, Login to your profile `clivern/clivern` and you can find your API Key in profile page.
+
 - To create a server:
 ```bash
 curl --request POST --url http://lwt.com/api/v1/server --header 'X-AUTH-TOKEN: api_token_here' --data 'name=R234&brand=HP&asset_id=123&price=200.35'

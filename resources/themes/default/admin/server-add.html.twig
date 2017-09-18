@@ -11,6 +11,7 @@
                 <div class="ui horizontal divider">{{ "New Server"|trans }}</div>
                 <div class="ui teal segment">
                     <form class="ui form" id="server_add_form" method="post" action="{{ url('api_v1_server_controller_create_action') }}">
+                        <input type="hidden" name="redirect" value="{{ url('web_server_controller_list') }}">
                         <div class="field">
                             <label>{{ "Name"|trans }}</label>
                             <input type="text" name="name" required="required">
@@ -21,7 +22,7 @@
                         </div>
                         <div class="field">
                             <label>{{ "Asset Id"|trans }}</label>
-                            <input type="text" name="asset_id" required="required">
+                            <input type="number" name="asset_id" required="required">
                         </div>
                         <div class="field">
                             <label>{{ "Price"|trans }}</label>

@@ -210,11 +210,11 @@ class ServerController extends Controller
 
         // Insert Server
         $status = $this->server->insert([
-            'asset_id' => $request->request->get('asset_id', ''),
+            'asset_id' => trim($request->request->get('asset_id', '')),
             'user' => $this->auth->getCurrentUser(),
-            'name' => $request->request->get('name', ''),
-            'brand' => $request->request->get('brand', ''),
-            'price' => $request->request->get('price', '')
+            'name' => trim($request->request->get('name', '')),
+            'brand' => trim($request->request->get('brand', '')),
+            'price' => trim($request->request->get('price', ''))
         ]);
 
         if( $status ){

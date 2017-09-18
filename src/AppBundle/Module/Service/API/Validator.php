@@ -73,7 +73,7 @@ class Validator implements ValidatorContract
             }
 
             $errors = $this->validator->validate(
-                $input['value'],
+                trim($input['value']),
                 $rule
             );
 

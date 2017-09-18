@@ -67,7 +67,7 @@
                 </div>
 
                 <div style="text-align:center">
-                    <a href="javascript:void(0)" data-target="{{ url('api_v1_server_controller_delete_action', {'id': server.getId()}) }}" class="negative ui button">{{ "Delete Server"|trans }}</a>
+                    <a href="javascript:void(0)" data-target="{{ url('api_v1_server_controller_delete_action', {'id': server.getId()}) }}" data-redirect="{{ url('web_server_controller_list') }}" class="negative ui button server_delete">{{ "Delete Server"|trans }}</a>
                 </div>
 
             </div>
@@ -90,7 +90,7 @@
                                     <tr>
                                         <td class="center aligned">{{ ram.getType()|e }}</td>
                                         <td class="center aligned">{{ ram.getSize()|e }} GB</td>
-                                        <td class="center aligned"><a href="javascript:void(0)" data-target="{{ url('api_v1_server_ram_controller_delete_action', {'server_id': server.getId(), 'ram_id' : ram.getId()}) }}" class="negative tiny ui button">{{ "Delete"|trans }}</a></td>
+                                        <td class="center aligned"><a href="javascript:void(0)" data-target="{{ url('api_v1_server_ram_controller_delete_action', {'server_id': server.getId(), 'ram_id' : ram.getId()}) }}" class="negative tiny ui button ram_delete">{{ "Delete"|trans }}</a></td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
@@ -105,7 +105,7 @@
                     <form class="ui form" id="server_ram_add_form" method="post" action="{{ url('api_v1_server_ram_controller_create_action',{'server_id': server.getId()}) }}">
                         <div class="field">
                             <label>{{ "Type"|trans }}</label>
-                            <select name="type" class="ui fluid dropdown" required="required">
+                            <select class="ui dropdown" name="type">
                                 <option value="">{{ "Type"|trans }}</option>
                                 <option value="DDR3">{{ "DDR3"|trans }}</option>
                                 <option value="DDR4">{{ "DDR4"|trans }}</option>
@@ -125,5 +125,41 @@
         </div>
         <br/>
     </div>
+
+    <div class="ui mini test modal ram_delete_modal">
+        <div class="header">
+            {{ "Delete Server Ram"|trans }}
+        </div>
+        <div class="content">
+            <p>{{ "Are you sure you want to delete this Ram?"|trans }}</p>
+        </div>
+        <div class="actions">
+            <div class="ui negative button">
+                {{ "No"|trans }}
+            </div>
+            <div class="ui positive right labeled icon button">
+                {{ "Yes"|trans }}
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="ui mini test modal server_delete_modal">
+        <div class="header">
+            {{ "Delete Server"|trans }}
+        </div>
+        <div class="content">
+            <p>{{ "Are you sure you want to delete this Server?"|trans }}</p>
+        </div>
+        <div class="actions">
+            <div class="ui negative button">
+                {{ "No"|trans }}
+            </div>
+            <div class="ui positive right labeled icon button">
+                {{ "Yes"|trans }}
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}
