@@ -57,7 +57,7 @@ class ServerController extends Controller
     public function listAction(Request $request)
     {
         return $this->render('admin/server-list.html.twig', [
-            'site_title' => $this->config->getByKey('_site_title', 'LWT'),
+            'site_title' => $this->get('translator')->trans('Servers')  . " | " . $this->config->getByKey('_site_title', 'LWT'),
             'current_user' => $this->auth->getCurrentUser(),
             'servers' => $this->server->getByUserId($this->auth->getCurrentUser()->getId(), 1, 100, true)
         ]);
@@ -71,7 +71,7 @@ class ServerController extends Controller
     public function addAction(Request $request)
     {
         return $this->render('admin/server-add.html.twig', [
-            'site_title' => $this->config->getByKey('_site_title', 'LWT'),
+            'site_title' => $this->get('translator')->trans('New Server')  . " | " . $this->config->getByKey('_site_title', 'LWT'),
             'current_user' => $this->auth->getCurrentUser()
         ]);
     }
@@ -88,7 +88,7 @@ class ServerController extends Controller
         }
 
         return $this->render('admin/server-view.html.twig', [
-            'site_title' => $this->config->getByKey('_site_title', 'LWT'),
+            'site_title' => $this->get('translator')->trans('View Server')  . " | " . $this->config->getByKey('_site_title', 'LWT'),
             'current_user' => $this->auth->getCurrentUser(),
             'server' => $this->server->getById($request->attributes->get('id', ''))
         ]);

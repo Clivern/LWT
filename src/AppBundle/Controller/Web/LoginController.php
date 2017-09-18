@@ -52,7 +52,7 @@ class LoginController extends Controller
         }
 
         return $this->render('guest/login.html.twig',[
-            'site_title' => $this->config->getByKey('_site_title', 'LWT'),
+            'site_title' => $this->get('translator')->trans('Login')  . " | " . $this->config->getByKey('_site_title', 'LWT'),
             'current_user' => $this->auth->getCurrentUser()
         ]);
     }

@@ -9,7 +9,7 @@ lwt_app.layout = (function (window, document, $) {
         },
 
         init: function(){
-
+            $('select.dropdown').dropdown();
         }
     };
 

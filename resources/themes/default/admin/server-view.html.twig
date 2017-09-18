@@ -12,15 +12,114 @@
                     {{ "Server Info"|trans }}
                 </div>
                 <div class="ui teal segment">
-
+                    <table class="ui very basic collapsing celled table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h4 class="ui image header">
+                                        <div class="content">
+                                            {{ "Asset Id"|trans }}
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td>
+                                    {{ server.getAssetId()|e }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4 class="ui image header">
+                                        <div class="content">
+                                            {{ "Name"|trans }}
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td>
+                                    {{ server.getName()|e }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4 class="ui image header">
+                                        <div class="content">
+                                            {{ "Brand"|trans }}
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td>
+                                    {{ server.getBrand()|e }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4 class="ui image header">
+                                        <div class="content">
+                                            {{ "Price"|trans }}
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td>
+                                    {{ server.getPrice()|e }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
+                <div style="text-align:center">
+                    <a href="javascript:void(0)" data-target="{{ url('api_v1_server_controller_delete_action', {'id': server.getId()}) }}" class="negative ui button">{{ "Delete Server"|trans }}</a>
+                </div>
+
             </div>
             <div class="column">
                 <div class="ui horizontal divider">
                     {{ "Server Rams"|trans }}
                 </div>
                 <div class="ui teal segment">
-
+                    <table class="ui celled padded table">
+                        <thead>
+                            <tr>
+                                <th class="center aligned">{{ "Type"|trans }}</th>
+                                <th class="center aligned">{{ "Size"|trans }}</th>
+                                <th class="center aligned">{{ "Actions"|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if server.getRams() %}
+                                {% for ram in server.getRams() %}
+                                    <tr>
+                                        <td class="center aligned">{{ ram.getType()|e }}</td>
+                                        <td class="center aligned">{{ ram.getSize()|e }} GB</td>
+                                        <td class="center aligned"><a href="javascript:void(0)" data-target="{{ url('api_v1_server_ram_controller_delete_action', {'server_id': server.getId(), 'ram_id' : ram.getId()}) }}" class="negative tiny ui button">{{ "Delete"|trans }}</a></td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="3" style="text-align:center"><p>{{ "No Rams Yet."|trans }}</p></td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    <br/>
+                    <h4 class="ui block header">{{ "New Ram"|trans }}</h4>
+                    <form class="ui form" id="server_ram_add_form" method="post" action="{{ url('api_v1_server_ram_controller_create_action',{'server_id': server.getId()}) }}">
+                        <div class="field">
+                            <label>{{ "Type"|trans }}</label>
+                            <select name="type" class="ui fluid dropdown" required="required">
+                                <option value="">{{ "Type"|trans }}</option>
+                                <option value="DDR3">{{ "DDR3"|trans }}</option>
+                                <option value="DDR4">{{ "DDR4"|trans }}</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>{{ "Size"|trans }}</label>
+                            <input type="number" name="size" required="required">
+                        </div>
+                        <div style="text-align: center">
+                            <button class="ui button" type="reset">{{ "Reset"|trans }}</button>
+                            <button class="ui secondary button" type="submit">{{ "Submit"|trans }}</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -13,15 +13,15 @@
                     <form class="ui form" id="profile_form" method="post" action="{{ url('web_profile_controller_update') }}">
                         <div class="field">
                             <label>{{ "Name"|trans }}</label>
-                            <input type="text" name="name" value="{{ current_user.getName() }}" required="required">
+                            <input type="text" name="name" value="{{ current_user.getName()|e }}" required="required">
                         </div>
                         <div class="field">
                             <label>{{ "Username"|trans }}</label>
-                            <input type="text" name="username" value="{{ current_user.getUsername() }}" required="required">
+                            <input type="text" name="username" value="{{ current_user.getUsername()|e }}" required="required">
                         </div>
                         <div class="field">
                             <label>{{ "Email"|trans }}</label>
-                            <input type="email" name="email" value="{{ current_user.getEmail() }}" required="required">
+                            <input type="email" name="email" value="{{ current_user.getEmail()|e }}" required="required">
                         </div>
                         <div style="text-align: center">
                             <button class="ui button" type="reset">{{ "Reset"|trans }}</button>
@@ -35,7 +35,7 @@
                     {{ "Your API Key"|trans }}
                 </div>
                 <div class="ui teal segment">
-                    {{ current_user.getApiToken() }}
+                    {{ current_user.getApiToken()|e }}
                 </div>
             </div>
         </div>

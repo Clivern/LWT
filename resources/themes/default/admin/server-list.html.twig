@@ -13,10 +13,10 @@
                     <table class="ui celled padded table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Asset ID</th>
-                                <th>Brand</th>
-                                <th>Actions</th>
+                                <th class="center aligned">{{ "Name"|trans }}</th>
+                                <th class="center aligned">{{ "Asset Id"|trans }}</th>
+                                <th class="center aligned">{{ "Brand"|trans }}</th>
+                                <th class="center aligned">{{ "Actions"|trans }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -26,19 +26,19 @@
                                         <td><h2 class="ui center aligned header">{{ server['name']|e }}</h2></td>
                                         <td class="center aligned">{{ server['asset_id']|e }}</td>
                                         <td class="center aligned">{{ server['brand']|e }}</td>
-                                        <td class="center aligned"><a href="{{ path('web_server_controller_view', {"id": server['id']}) }}" class="tiny ui button">View</a></td>
+                                        <td class="center aligned"><a href="{{ path('web_server_controller_view', {"id": server['id']}) }}" class="tiny ui button">{{ "View"|trans }}</a></td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
                                 <tr>
-                                    <td colspan="4" style="text-align:center"><p>No Servers Yet.</p></td>
+                                    <td colspan="4" style="text-align:center"><p>{{ "No Servers Yet."|trans }}</p></td>
                                 </tr>
                             {% endif %}
                         </tbody>
                     </table>
                 </div>
                 <div style="text-align:center">
-                    <a href="{{ path('web_server_controller_add') }}" class="positive ui button">New Server</a>
+                    <a href="{{ path('web_server_controller_add') }}" class="positive ui button">{{ "New Server"|trans }}</a>
                 </div>
             </div>
         </div>

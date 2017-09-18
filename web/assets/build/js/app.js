@@ -79,7 +79,9 @@ lwt_app.layout = function (window, document, $) {
 
         el: {},
 
-        init: function init() {}
+        init: function init() {
+            $('select.dropdown').dropdown();
+        }
     };
 
     return {
