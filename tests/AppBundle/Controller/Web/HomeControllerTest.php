@@ -11,6 +11,12 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 class HomeControllerTest extends WebTestCase
 {
+
+    /**
+     * Test Home Page
+     *
+     * @return void
+     */
     public function testIndex()
     {
         $client = static::createClient();

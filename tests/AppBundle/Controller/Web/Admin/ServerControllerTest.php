@@ -11,8 +11,41 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 class ServerControllerTest extends WebTestCase
 {
-    public function testIndex()
+
+    /**
+     * Test List Page
+     *
+     * @return void
+     */
+    public function testList()
     {
-        #
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/admin/servers');
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
+
+    /**
+     * Test Add Page
+     *
+     * @return void
+     */
+    public function testAdd()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/admin/servers/add');
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    }
+
+    /**
+     * Test View Page
+     *
+     * @return void
+     */
+    public function testView()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/admin/servers/1/view');
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    }
+
 }
