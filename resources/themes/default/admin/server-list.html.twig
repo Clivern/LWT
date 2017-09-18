@@ -26,7 +26,7 @@
                                         <td><h2 class="ui center aligned header">{{ server['name']|e }}</h2></td>
                                         <td class="center aligned">{{ server['asset_id']|e }}</td>
                                         <td class="center aligned">{{ server['brand']|e }}</td>
-                                        <td class="center aligned"><a href="{{ url('web_server_controller_view', {"id": server['id']}) }}" class="tiny ui button">View</a></td>
+                                        <td class="center aligned"><a href="{{ path('web_server_controller_view', {"id": server['id']}) }}" class="tiny ui button">View</a></td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
@@ -38,7 +38,7 @@
                     </table>
                 </div>
                 <div style="text-align:center">
-                    <a href="{{ url('web_server_controller_add') }}" class="positive ui button">New Server</a>
+                    <a href="{{ path('web_server_controller_add') }}" class="positive ui button">New Server</a>
                 </div>
             </div>
         </div>

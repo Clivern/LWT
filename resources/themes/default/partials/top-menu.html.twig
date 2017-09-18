@@ -1,19 +1,19 @@
 <div class="ui fixed inverted menu">
     <div class="ui container">
-        <a href="{{ url('web_home_controller_homepage') }}" class="header item">
+        <a href="{{ path('web_home_controller_homepage') }}" class="header item">
             <img class="logo" src="{{ absolute_url(asset('assets/images/logo.png')) }}">
         </a>
 
         {% if current_user %}
             <div class="right menu">
-                <a href="{{ url('web_dashboard_controller_dashboard') }}" class="ui item">Dashboard</a>
-                <a href="{{ url('web_server_controller_list') }}" class="ui item">Servers</a>
-                <a href="{{ url('web_profile_controller_update') }}" class="ui item">Profile</a>
-                <a href="{{ url('web_login_controller_logout') }}" class="ui item">Logout</a>
+                <a href="{{ path('web_dashboard_controller_dashboard') }}" class="ui item">Dashboard</a>
+                <a href="{{ path('web_server_controller_list') }}" class="ui item">Servers</a>
+                <a href="{{ path('web_profile_controller_update') }}" class="ui item">Profile</a>
+                <a href="{{ path('web_login_controller_logout') }}" class="ui item">Logout</a>
             </div>
         {% else %}
             <div class="right menu">
-                <a href="{{ url('web_login_controller_login') }}" class="ui item">Login</a>
+                <a href="{{ path('web_login_controller_login') }}" class="ui item">Login</a>
             </div>
         {% endif %}
     </div>
