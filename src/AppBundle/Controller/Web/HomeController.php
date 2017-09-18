@@ -46,7 +46,8 @@ class HomeController extends Controller
     public function homeAction(Request $request)
     {
         return $this->render('guest/home.html.twig', [
-            'site_title' => 'LWT'
+            'site_title' => $this->config->getByKey('_site_title', 'LWT'),
+            'current_user' => $this->auth->getCurrentUser()
         ]);
     }
 }

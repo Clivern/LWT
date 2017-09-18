@@ -45,7 +45,16 @@ class LoginController extends Controller
      */
     public function loginAction(Request $request)
     {
-        return $this->render('guest/login.html.twig');
+        // Check if user logged in
+        if( !empty($this->auth->getCurrentUser()) ){
+            // Send to dashboard
+            return $this->redirectToRoute('web_dashboard_controller_dashboard');
+        }
+
+        return $this->render('guest/login.html.twig',[
+            'site_title' => $this->config->getByKey('_site_title', 'LWT'),
+            'current_user' => $this->auth->getCurrentUser()
+        ]);
     }
 
     /**

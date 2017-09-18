@@ -44,6 +44,9 @@ class DashboardController extends Controller
      */
     public function dashboardAction(Request $request)
     {
-        return $this->render('admin/dashboard.html.twig');
+        return $this->render('admin/dashboard.html.twig', [
+            'site_title' => $this->config->getByKey('_site_title', 'LWT'),
+            'current_user' => $this->auth->getCurrentUser()
+        ]);
     }
 }

@@ -56,7 +56,10 @@ class ServerController extends Controller
      */
     public function listAction(Request $request)
     {
-        return $this->render('admin/server-list.html.twig');
+        return $this->render('admin/server-list.html.twig', [
+            'site_title' => $this->config->getByKey('_site_title', 'LWT'),
+            'current_user' => $this->auth->getCurrentUser()
+        ]);
     }
 
     /**
@@ -66,7 +69,10 @@ class ServerController extends Controller
      */
     public function addAction(Request $request)
     {
-        return $this->render('admin/server-add.html.twig');
+        return $this->render('admin/server-add.html.twig', [
+            'site_title' => $this->config->getByKey('_site_title', 'LWT'),
+            'current_user' => $this->auth->getCurrentUser()
+        ]);
     }
 
     /**
@@ -76,6 +82,9 @@ class ServerController extends Controller
      */
     public function viewAction(Request $request)
     {
-        return $this->render('admin/server-view.html.twig');
+        return $this->render('admin/server-view.html.twig', [
+            'site_title' => $this->config->getByKey('_site_title', 'LWT'),
+            'current_user' => $this->auth->getCurrentUser()
+        ]);
     }
 }

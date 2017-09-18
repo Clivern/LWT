@@ -1,7 +1,47 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title %}LWT{% endblock %}
+{% block title %}{{ site_title }}{% endblock %}
 
 {% block content %}
+
+  <div class="main-container">
+    <br/>
+	<div class="ui two column centered grid">
+	  <div class="column">
+	  	<div class="ui horizontal divider">
+    		{{ "My Profile"|trans }}
+  		</div>
+  		<div class="ui teal segment">
+			<form class="ui form" id="profile_form" method="post" action="{{ url('web_profile_controller_update') }}">
+			  	<div class="field">
+			    	<label>{{ "Name"|trans }}</label>
+			    	<input type="text" name="name" value="{{ current_user.getName() }}">
+			  	</div>
+			  	<div class="field">
+			    	<label>{{ "Username"|trans }}</label>
+			    	<input type="text" name="username" value="{{ current_user.getUsername() }}">
+			  	</div>
+			  	<div class="field">
+			    	<label>{{ "Email"|trans }}</label>
+			    	<input type="text" name="email" value="{{ current_user.getEmail() }}">
+			  	</div>
+			  	<div style="text-align: center">
+			  		<button class="ui button" type="reset">{{ "Reset"|trans }}</button>
+			  		<button class="ui secondary button" type="submit">{{ "Update"|trans }}</button>
+				</div>
+			</form>
+		</div>
+	  </div>
+	  <div class="column">
+	  	<div class="ui horizontal divider">
+    		{{ "Your API Key"|trans }}
+  		</div>
+  		<div class="ui teal segment">
+  			{{ current_user.getApiToken() }}
+		</div>
+	  </div>
+	</div>
+    <br/>
+  </div>
 
 {% endblock %}

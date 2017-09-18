@@ -1,7 +1,39 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title %}LWT{% endblock %}
+{% block title %}{{ site_title }}{% endblock %}
 
 {% block content %}
+
+  <div class="main-container">
+    <br/>
+	<div class="ui two column centered grid">
+	  <div class="column">
+	  	<div class="ui horizontal divider">
+    		{{ "Servers"|trans }}
+  		</div>
+  		<div class="ui teal segment">
+			<table class="ui celled striped table">
+			  <tbody>
+			    <tr>
+			      <td class="collapsing">
+			        <i class="server icon"></i> RTE
+			      </td>
+			      <td>Test</td>
+			      <td class="right aligned collapsing">Data</td>
+			    </tr>
+			    <tr>
+			      <td>
+			        <i class="server icon"></i> RTE
+			      </td>
+			      <td>Test</td>
+			      <td class="right aligned">Data</td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+	  </div>
+	</div>
+    <br/>
+  </div>
 
 {% endblock %}
