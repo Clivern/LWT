@@ -154,6 +154,7 @@ lwt_app.login = function (window, document, $) {
         },
         data: function data() {
             var inputs = {};
+            inputs['csrf_token'] = $('meta[name="csrf-token"]').attr('content');
             base.el.form.serializeArray().map(function (item, index) {
                 inputs[item.name] = item.value;
             });
@@ -270,6 +271,7 @@ lwt_app.profile = function (window, document, $) {
         },
         data: function data() {
             var inputs = {};
+            inputs['csrf_token'] = $('meta[name="csrf-token"]').attr('content');
             base.el.form.serializeArray().map(function (item, index) {
                 inputs[item.name] = item.value;
             });
@@ -388,6 +390,7 @@ lwt_app.add_server = function (window, document, $) {
         },
         data: function data() {
             var inputs = {};
+            inputs['csrf_token'] = $('meta[name="csrf-token"]').attr('content');
             base.el.form.serializeArray().map(function (item, index) {
                 inputs[item.name] = item.value;
             });
@@ -509,6 +512,7 @@ lwt_app.add_server_ram = function (window, document, $) {
         },
         data: function data() {
             var inputs = {};
+            inputs['csrf_token'] = $('meta[name="csrf-token"]').attr('content');
             base.el.form.serializeArray().map(function (item, index) {
                 inputs[item.name] = item.value;
             });
@@ -617,7 +621,7 @@ lwt_app.delete_server_ram = function (window, document, $) {
                     base.el.deleteButt.addClass('loading');
                     Pace.track(function () {
                         $.ajax({
-                            url: base.el.deleteButt.attr('data-target') + '?api_token=' + base.get('api_token'),
+                            url: base.el.deleteButt.attr('data-target') + '?api_token=' + base.get('api_token') + '&csrf_token=' + $('meta[name="csrf-token"]').attr('content'),
                             type: "DELETE",
                             data: base.data(),
                             success: function success(response) {
@@ -738,7 +742,7 @@ lwt_app.delete_server = function (window, document, $) {
                     base.el.deleteButt.addClass('loading');
                     Pace.track(function () {
                         $.ajax({
-                            url: base.el.deleteButt.attr('data-target') + '?api_token=' + base.get('api_token'),
+                            url: base.el.deleteButt.attr('data-target') + '?api_token=' + base.get('api_token') + '&csrf_token=' + $('meta[name="csrf-token"]').attr('content'),
                             type: "DELETE",
                             data: base.data(),
                             success: function success(response) {

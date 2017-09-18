@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use AppBundle\Module\Contract\API\Response as ResponseContract;
 use AppBundle\Module\Contract\Core\Auth as AuthContract;
 
@@ -29,14 +30,20 @@ class AccessTokenSubscriber implements EventSubscriberInterface
     protected $auth;
 
     /**
+     * @var CsrfTokenManagerInterface
+     */
+    protected $token_manager;
+
+    /**
      * Class Constructor
      *
      * @param ResponseContract $response
      */
-    public function __construct(ResponseContract $response, AuthContract $auth)
+    public function __construct(ResponseContract $response, AuthContract $auth, CsrfTokenManagerInterface $token_manager)
     {
         $this->response = $response;
         $this->auth = $auth;
+        $this->token_manager = $token_manager;
     }
 
     /**
@@ -59,23 +66,42 @@ class AccessTokenSubscriber implements EventSubscriberInterface
 
         $target_action = get_class($controller[0]) . '@' . $controller[1];
 
-        // Bypass auth action
+
+        // Check For CSRF Token in case of Ajax Request
+        if( $event->getRequest()->isXmlHttpRequest() ){
+            $csrf_token = $event->getRequest()->query->get('csrf_token');
+            if( !$csrf_token ){
+                $csrf_token = $event->getRequest()->request->get('csrf_token');
+            }
+            if( $csrf_token != $this->token_manager->getToken('intention')->getValue() ){
+                $this->response->setStatus(false);
+                $this->response->setMessage(['type' => 'error', 'message' => 'Invalid Request!']);
+                echo json_encode($this->response->getResponse());
+                die();
+            }
+        }
+
+        // Bypass auth action from the api token verification
         if( (strpos($target_action, 'LoginController@authAction') !== false) ){
             $this->auth->isLogged();
             return;
         }
 
+        // Bypass All web controllers from api token verification
         if( (strpos($target_action, 'AppBundle\Controller\API') === false) ){
             $this->auth->isLogged();
             return;
         }
 
+        // Get API access token from url parameters
         $access_token = $event->getRequest()->query->get('api_token');
 
+        // Get API token from header
         if( empty($access_token) ){
             $access_token = $event->getRequest()->headers->get('X-AUTH-TOKEN');
         }
 
+        // Check if API Token exists
         if( empty($access_token) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => 'Access Denied! Access Token Not Provided.']);
@@ -83,8 +109,8 @@ class AccessTokenSubscriber implements EventSubscriberInterface
             die();
         }
 
+        // Load User Data in auth object with his access token
         $user = $this->auth->getUserByApiToken($access_token);
-
         if( empty($user) ){
             $this->response->setStatus(false);
             $this->response->setMessage(['type' => 'error', 'message' => 'Access Denied! Invalid or Expired Access Token.']);

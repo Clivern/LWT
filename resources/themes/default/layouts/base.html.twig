@@ -7,7 +7,7 @@
         <title>{{ block('title') }}</title>
         <meta name="description" content="description here">
         <meta name="keywords" content="keywords, here">
-        <meta name="csrf-token" content="">
+        <meta name="csrf-token" content="{{ csrf_token("intention") }}">
         <!-- favicon -->
         <link rel="shortcut icon" type="image/ico" href="{{ absolute_url(asset('assets/images/logo.png')) }}" />
         {% include 'partials/header.html.twig' %}

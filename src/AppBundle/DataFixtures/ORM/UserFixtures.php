@@ -30,10 +30,24 @@ class UserFixtures extends Fixture
         $admin->setEmail('hello@clivern.com');
         $admin->setStatus('active');
         $admin->setApiToken('$2y$10$7263UTiI9ExW1HL05QnOLefmRHJtYXoOjh.LFRqUmZ3pI2Q5O99MS');
-        $admin->setApiTokenExpire(time() + (24 * 60 * 60));
+        $admin->setApiTokenExpire(time() + (60 * 24 * 60 * 60));
         $admin->setRememberToken('');
         $encoder = $this->container->get('security.password_encoder');
         $password = $encoder->encodePassword($admin, 'clivern');
+        $admin->setPassword($password);
+        $manager->persist($admin);
+        $manager->flush();
+
+        $admin = new User();
+        $admin->setName('Lwt');
+        $admin->setUsername('lwt');
+        $admin->setEmail('hello@lwt.com');
+        $admin->setStatus('active');
+        $admin->setApiToken('$2y$10$7263UTiI9ExW1HL05QnOLefmRHJtYXoOjh.LFRqUmZ3pI2Q789K8L');
+        $admin->setApiTokenExpire(time() + (60 * 24 * 60 * 60));
+        $admin->setRememberToken('');
+        $encoder = $this->container->get('security.password_encoder');
+        $password = $encoder->encodePassword($admin, 'lwt');
         $admin->setPassword($password);
         $manager->persist($admin);
         $manager->flush();
