@@ -38,7 +38,7 @@ class UserControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request(
             'PUT',
-            '/api/user/' . $this->user->getId() . '?api_token=$2y$10$7263UTiI9ExW1HL05QnOLefmRHJtYXoOjh.LFRqUmZ3pI2Q5O99MS',
+            '/api/user/' . $this->user->getId() . '?api_token=' . $this->user->getApiToken(),
             ['name' => 'Clivern', 'username' => 'clivern', 'email' => 'hello@clivern.com']
         );
         $this->assertContains('"success":true', $client->getResponse()->getContent());
@@ -54,7 +54,7 @@ class UserControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request(
             'PUT',
-            '/api/user/' . $this->user->getId() . '?api_token=$2y$10$7263UTiI9ExW1HL05QnOLefmRHJtYXoOjh.LFRqUmZ3pI2Q5O99MS',
+            '/api/user/' . $this->user->getId() . '?api_token=' . $this->user->getApiToken(),
             ['name' => ' ', 'username' => 'clivern', 'email' => 'hello@clivern.com']
         );
         $this->assertContains('"success":false', $client->getResponse()->getContent());
