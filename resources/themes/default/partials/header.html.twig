@@ -25,8 +25,8 @@
 
 <script type="text/javascript">
     var app_globals = {
-        home_url: "",
-        api_url: ""
+        fetch_access_token_url: "{{ url('api_v1_login_controller_access_token_action') }}",
+        fetch_refresh_token_url: "{{ url('api_v1_login_controller_refresh_token_action') }}"
     };
 </script>
 <style type="text/css">

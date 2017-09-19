@@ -153,7 +153,9 @@ class LoginController extends Controller
             $user = $this->user->getById($this->auth->getCurrentUser()->getId());
             $this->response->setStatus(true);
             $this->response->setPayload([
+                'id' => $user->getId(),
                 'api_token' => $user->getApiToken(),
+                'api_token_expire' => $user->getApiTokenExpire()
             ]);
             return new JsonResponse($this->response->getResponse());
         }

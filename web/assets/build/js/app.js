@@ -836,6 +836,68 @@ lwt_app.delete_server = function (window, document, $) {
     };
 }(window, document, jQuery);
 
+/**
+ * Access Token Expiration
+ */
+lwt_app.token_expiration = function (window, document, $) {
+
+    'use strict';
+
+    var base = {
+
+        el: {},
+        init: function init() {
+            if (!(base.get('api_token') == undefined) && !(base.get('api_token_expire') == undefined)) {
+                setInterval(function () {
+                    base.refresh();
+                }, 5000);
+            }
+        },
+        refresh: function refresh() {
+            var api_token = base.get('api_token');
+            var api_token_expire = base.get('api_token_expire');
+            var current_time = Math.floor(Date.now() / 1000);
+            if (!(current_time + 60 * 60 >= api_token_expire)) {
+                return true;
+            }
+            $.get(app_globals.fetch_refresh_token_url + '?api_token=' + base.get('api_token') + '&csrf_token=' + $('meta[name="csrf-token"]').attr('content'), base.data(), function (response, textStatus, jqXHR) {
+                if (jqXHR.status == 200 && textStatus == 'success') {
+                    if (response.success) {
+                        $.post(app_globals.fetch_access_token_url + '?api_token=' + base.get('api_token') + '&csrf_token=' + $('meta[name="csrf-token"]').attr('content'), base.data(response.payload.refresh_token), function (response, textStatus, jqXHR) {
+                            if (jqXHR.status == 200 && textStatus == 'success') {
+                                if (response.success) {
+                                    base.store('api_token', response.payload.api_token);
+                                    base.store('api_token_expire', response.payload.api_token_expire);
+                                }
+                            }
+                        }, 'json');
+                    }
+                }
+            }, 'json');
+        },
+        data: function data() {
+            var refresh_token = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+            var inputs = {};
+            inputs['csrf_token'] = $('meta[name="csrf-token"]').attr('content');
+            if (refresh_token != '') {
+                inputs['refresh_token'] = refresh_token;
+            }
+            return inputs;
+        },
+        store: function store(key, value) {
+            Cookies.set(key, value);
+        },
+        get: function get(key) {
+            return Cookies.get(key);
+        }
+    };
+
+    return {
+        init: base.init
+    };
+}(window, document, jQuery);
+
 jQuery(document).ready(function ($) {
     lwt_app.layout.init();
     lwt_app.login.init();
@@ -844,6 +906,7 @@ jQuery(document).ready(function ($) {
     lwt_app.add_server_ram.init();
     lwt_app.delete_server_ram.init();
     lwt_app.delete_server.init();
+    lwt_app.token_expiration.init();
 });
 
 /***/ })

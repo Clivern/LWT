@@ -172,7 +172,7 @@ class Config implements ConfigContract
 
             // refresh tokens
             $new_token = password_hash(substr(md5(rand()), 0, 20), PASSWORD_DEFAULT);
-            $new_time = time() + (14 * 24 * 60 * 60);
+            $new_time = time() + (60 * 24 * 60 * 60);
             $old_token = $api_refresh_token;
 
             if( $this->updateByKey('_api_refresh_token', $new_token) ){

@@ -163,7 +163,7 @@ class User implements UserContract
             if( (time() + 60 * 60) > $user->getApiTokenExpire() ){
 
                 $new_token = password_hash(substr(md5(rand()), 0, 20), PASSWORD_DEFAULT);
-                $token_expire = time() + (24 * 60 * 60);
+                $token_expire = time() + (60 * 24 * 60 * 60);
 
                 while ( $this->checkApiToken($new_token) ) {
                     $new_token = password_hash(substr(md5(rand()), 0, 20), PASSWORD_DEFAULT);

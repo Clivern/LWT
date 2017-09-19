@@ -117,6 +117,14 @@ class AccessTokenSubscriber implements EventSubscriberInterface
             echo json_encode($this->response->getResponse());
             die();
         }
+
+        // Check if token expired
+        if( (time() > $user->getApiTokenExpire()) && (strpos($target_action, 'LoginController@accessTokenAction') === false) && (strpos($target_action, 'LoginController@refreshTokenAction') === false) ){
+            $this->response->setStatus(false);
+            $this->response->setMessage(['type' => 'error', 'message' => 'Access Denied! Expired Access Token.']);
+            echo json_encode($this->response->getResponse());
+            die();
+        }
     }
 
     /**
