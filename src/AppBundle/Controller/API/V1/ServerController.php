@@ -209,7 +209,7 @@ class ServerController extends Controller
         }
 
         // Insert Server
-        $status = $this->server->insert([
+        $server_id = $this->server->insert([
             'asset_id' => trim($request->request->get('asset_id', '')),
             'user' => $this->auth->getCurrentUser(),
             'name' => trim($request->request->get('name', '')),
@@ -217,8 +217,16 @@ class ServerController extends Controller
             'price' => trim($request->request->get('price', ''))
         ]);
 
-        if( $status ){
+        if( $server_id ){
+            $server = $this->server->getById($server_id);
             $this->response->setStatus(true);
+            $this->response->setPayload([
+                'id' => $server->getId(),
+                'asset_id' => $server->getAssetId(),
+                'name' => $server->getName(),
+                'brand' => $server->getBrand(),
+                'price' => $server->getPrice()
+            ]);
             $this->response->setMessage(['type' => 'success', 'message' => $this->get('translator')->trans('Server saved successfully.')]);
         }else{
             $this->response->setStatus(false);

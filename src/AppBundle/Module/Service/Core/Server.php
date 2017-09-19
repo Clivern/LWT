@@ -103,7 +103,7 @@ class Server implements ServerContract
      * Insert Data
      *
      * @param array $data
-     * @return boolean
+     * @return integer
      */
     public function insert($data)
     {
@@ -117,7 +117,7 @@ class Server implements ServerContract
 
         $this->entityManager->flush();
 
-        return true;
+        return $server->getId();
     }
 
     /**

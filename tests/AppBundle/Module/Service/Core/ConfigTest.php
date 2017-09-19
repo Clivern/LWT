@@ -43,7 +43,9 @@ class ConfigTest extends KernelTestCase
      */
     public function testInsert()
     {
-        $this->assertTrue($this->config->insert('__test_key', 'Test Value', 'off'));
+        $this->config->deleteByKey('__test_key');
+        $this->config->deleteByKey('__test_key_02');
+        $this->assertTrue((boolean) $this->config->insert('__test_key', 'Test Value', 'off'));
     }
 
     /**
@@ -87,7 +89,7 @@ class ConfigTest extends KernelTestCase
         $config = $this->config->getEntityByKey('__test_key');
 
         $this->assertTrue($this->config->updateById($config->getId(), 'Test Value'));
-        $this->assertTrue($this->config->insert('__test_key_02', 'Test Value', 'off'));
+        $this->assertTrue((boolean) $this->config->insert('__test_key_02', 'Test Value', 'off'));
 
         $config = $this->config->getEntityByKey('__test_key_02');
         $this->assertTrue($this->config->deleteById($config->getId()));

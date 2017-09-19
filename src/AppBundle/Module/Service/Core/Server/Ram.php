@@ -88,7 +88,7 @@ class Ram implements RamContract
      * Insert Data
      *
      * @param array $data
-     * @return boolean
+     * @return integer
      */
     public function insert($data)
     {
@@ -101,7 +101,7 @@ class Ram implements RamContract
 
         $this->entityManager->flush();
 
-        return true;
+        return $ram->getId();
     }
 
     /**

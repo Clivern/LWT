@@ -192,15 +192,21 @@ class RamController extends Controller
         }
 
         // Insert Server Ram
-        $status = $this->ram->insert([
+        $ram_id = $this->ram->insert([
             'server' => $this->server->getById($request->attributes->get('server_id', '')),
             'user' => $this->auth->getCurrentUser(),
             'type' => trim($request->request->get('type', '')),
             'size' => trim($request->request->get('size', ''))
         ]);
 
-        if( $status ){
+        if( $ram_id ){
+            $ram = $this->ram->getById($ram_id);
             $this->response->setStatus(true);
+            $this->response->setPayload([
+                'id' => $ram->getId(),
+                'type' => $ram->getType(),
+                'size' => $ram->getSize()
+            ]);
             $this->response->setMessage(['type' => 'success', 'message' => $this->get('translator')->trans('Ram saved successfully.')]);
         }else{
             $this->response->setStatus(false);

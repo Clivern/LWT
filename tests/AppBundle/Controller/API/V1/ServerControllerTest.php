@@ -50,7 +50,6 @@ class ServerControllerTest extends WebTestCase
             '/api/v1/server?api_token=' . $user->getApiToken(),
             ['name'=>'R234', 'brand'=>'Dell', 'asset_id'=>'123', 'price'=>'200.35']
         );
-
         $this->assertContains('"success":true', $client->getResponse()->getContent());
     }
 

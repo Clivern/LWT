@@ -53,7 +53,7 @@ class Config implements ConfigContract
 
         $this->entityManager->flush();
 
-        return true;
+        return $config->getId();
     }
 
     /**

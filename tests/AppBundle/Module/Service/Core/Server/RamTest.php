@@ -57,9 +57,9 @@ class RamTest extends KernelTestCase
      */
     public function testInsert()
     {
+        $this->server->deleteByAssetId('78453');
         $user = $this->user->getByUsername('lwt');
-
-        $this->assertTrue($this->server->insert([
+        $this->assertTrue((boolean) $this->server->insert([
             'asset_id' => '78453',
             'user' => $user,
             'name' => 'K123',
@@ -69,7 +69,7 @@ class RamTest extends KernelTestCase
 
         $server = $this->server->getByAssetId('78453');
 
-        $this->assertTrue($this->ram->insert([
+        $this->assertTrue((boolean) $this->ram->insert([
             'server' => $server,
             'user' => $user,
             'type' => 'DDR3',

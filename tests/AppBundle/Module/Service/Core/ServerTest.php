@@ -50,16 +50,19 @@ class ServerTest extends KernelTestCase
      */
     public function testInsert()
     {
+        $this->server->deleteByAssetId('87523');
+        $this->server->deleteByAssetId('87864');
+
         $user = $this->user->getByUsername('lwt');
 
-        $this->assertTrue($this->server->insert([
+        $this->assertTrue((boolean) $this->server->insert([
             'asset_id' => '87523',
             'user' => $user,
             'name' => 'K123',
             'brand' => 'Dell',
             'price' => '300.03',
         ]));
-        $this->assertTrue($this->server->insert([
+        $this->assertTrue((boolean) $this->server->insert([
             'asset_id' => '87864',
             'user' => $user,
             'name' => 'K183',
