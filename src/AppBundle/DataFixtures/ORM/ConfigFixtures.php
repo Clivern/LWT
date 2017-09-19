@@ -37,7 +37,7 @@ class ConfigFixtures extends Fixture
             [ 'config_key' => '_site_custom_scripts', 'config_value' => '', 'autoload' => 'on' ],
             [ 'config_key' => '_site_tracking_codes', 'config_value' => '', 'autoload' => 'on' ],
             [ 'config_key' => '_cron_key', 'config_value' => substr(md5(rand()), 0, 20) . substr(md5(rand()), 0, 20), 'autoload' => 'on' ],
-            [ 'config_key' => '_api_refresh_token', 'config_value' => password_hash(substr(md5(rand()), 0, 20), PASSWORD_DEFAULT), 'autoload' => 'on' ],
+            [ 'config_key' => '_api_refresh_token', 'config_value' => '$2y$10$IDVEJjblmZOOCMnKZznGoeqLNjh9Bxoi854Hw/JiMcPMvMqkP2UC2', 'autoload' => 'on' ],
             [ 'config_key' => '_api_refresh_token_expire', 'config_value' => time() + (60 * 24 * 60 * 60), 'autoload' => 'on' ],
             [ 'config_key' => '_api_old_refresh_token', 'config_value' => password_hash(substr(md5(rand()), 0, 20), PASSWORD_DEFAULT), 'autoload' => 'on' ],
         ];
