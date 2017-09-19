@@ -292,6 +292,37 @@ curl --request GET --url http://lwt.com/api/v1/refresh_token --header 'X-AUTH-TO
 curl --request POST --url http://lwt.com/api/v1/api_token --header 'X-AUTH-TOKEN: api_token_here' --data 'refresh_token=sgshdhd..'
 ```
 
+Deploy The Application
+----------------------
+In order to run and deploy this application on production server, Please do the following during installation.
+
+- Check your server requirements.
+```bash
+php bin/symfony_requirements
+```
+
+- Insert you database configrations and other configs on `parameters.yml.dist`.
+
+- Install/Update your Vendors
+```bash
+composer install --no-dev --optimize-autoloader
+```
+
+- Clear your Symfony Cache
+```bash
+php bin/console cache:clear --env=prod --no-debug --no-warmup
+php bin/console cache:warmup --env=prod
+```
+
+- Build your database tables and do seeding.
+```bash
+php bin/console doctrine:schema:update --force
+php bin/console doctrine:fixtures:load
+```
+
+*For More Info*, Please [check symfony docs](https://symfony.com/doc/current/deployment.html)
+
+
 Misc
 ----
 
