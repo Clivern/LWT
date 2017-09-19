@@ -230,7 +230,13 @@ php bin/console doctrine:fixtures:load
 </VirtualHost>
 ```
 
-Please Don't forget to add lwt.com on your hosts file
+- Please don't forgot to add the suitable folder permissions for example
+```bash
+sudo chown -R clivern:www-data lwt
+sudo chown -R 775 lwt
+```
+
+Also Don't forget to add lwt.com on your hosts file
 ```
 127.0.1.6       lwt.com
 ```
@@ -335,6 +341,12 @@ php bin/console doctrine:fixtures:load
             allow from all
         </Directory>
 </VirtualHost>
+```
+
+- Please don't forgot to add the suitable folder permissions for example
+```bash
+sudo chown -R clivern:www-data lwt
+sudo chown -R 775 lwt
 ```
 
 *For More Info*, Please [check symfony docs](https://symfony.com/doc/current/deployment.html)
