@@ -68,7 +68,7 @@ class AccessTokenSubscriber implements EventSubscriberInterface
 
 
         // Check For CSRF Token in case of Ajax Request
-        if( $event->getRequest()->isXmlHttpRequest() ){
+        if( $event->getRequest()->isXmlHttpRequest() && (strpos($target_action, 'ProfilerController@toolbarAction') === false) ){
             $csrf_token = $event->getRequest()->query->get('csrf_token');
             if( !$csrf_token ){
                 $csrf_token = $event->getRequest()->request->get('csrf_token');
