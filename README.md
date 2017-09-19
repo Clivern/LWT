@@ -301,9 +301,7 @@ In order to run and deploy this application on production server, Please do the 
 php bin/symfony_requirements
 ```
 
-- Insert you database configrations and other configs on `parameters.yml.dist`.
-
-- Install/Update your Vendors
+- Install/Update your vendors and It is required to provide your database credentials.
 ```bash
 composer install --no-dev --optimize-autoloader
 ```
