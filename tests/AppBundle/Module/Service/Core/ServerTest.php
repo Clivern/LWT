@@ -132,6 +132,18 @@ class ServerTest extends KernelTestCase
     }
 
     /**
+     * Test User Owns
+     *
+     * @return void
+     */
+    public function testUserOwns()
+    {
+        $server = $this->server->getByAssetId('87523');
+        $user = $this->user->getByUsername('lwt');
+        $this->assertTrue($this->server->userOwns($user->getId(), $server->getId()));
+    }
+
+    /**
      * Test Delete By Id
      *
      * @return void
