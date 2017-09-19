@@ -98,6 +98,20 @@ class Config implements ConfigContract
         return $default;
     }
 
+
+    /**
+     * Get config entity by key
+     *
+     * @param  string  $key
+     * @return ConfigEntity
+     */
+    public function getEntityByKey($key)
+    {
+        $config = $this->entityManager->getRepository(ConfigEntity::class)->findOneBy(['configKey' => $key]);
+
+        return (!empty($config)) ? $config : false;
+    }
+
     /**
      * Update config by key
      *
@@ -107,7 +121,7 @@ class Config implements ConfigContract
      */
     public function updateByKey($key, $value)
     {
-        $config = $this->getByKey($key);
+        $config = $this->entityManager->getRepository(ConfigEntity::class)->findOneBy(['configKey' => $key]);
 
         if( !empty($config) ){
             $value = (is_array($value)) ? serialize($value) : $value;
@@ -203,7 +217,7 @@ class Config implements ConfigContract
      */
     public function deleteByKey($key)
     {
-        $config = $this->getByKey($key);
+        $config = $this->entityManager->getRepository(ConfigEntity::class)->findOneBy(['configKey' => $key]);
 
         if( !empty($config) ){
             $this->entityManager->remove($config);

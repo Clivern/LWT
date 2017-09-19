@@ -38,6 +38,14 @@ interface Config
     public function getByKey($key, $default = false);
 
     /**
+     * Get config entity by key
+     *
+     * @param  string  $key
+     * @return ConfigEntity
+     */
+    public function getEntityByKey($key);
+
+    /**
      * Update config by key
      *
      * @param  string  $key
