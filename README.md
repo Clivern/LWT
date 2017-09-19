@@ -3,7 +3,7 @@ LWT
 
 :wolf: Simple ERP Application Skeleton In Symfony 3.3.9.
 
-*Current version: Under Development*
+*Current version: 1.0.0*
 
 [![Build Status](https://travis-ci.org/Clivern/LWT.svg?branch=master)](https://travis-ci.org/Clivern/LWT)
 
@@ -384,7 +384,7 @@ Please note that, you need `xdebug` in order to get coverage reports.
 
 Version 1.0.0:
 ```
-Coming Soon :D
+Initial Release.
 ```
 
 ### Acknowledgements
