@@ -215,17 +215,18 @@ php bin/console doctrine:fixtures:load
 - You need to create a [virtual host](http://symfony.com/doc/current/setup/web_server_configuration.html) for this project and have it always running.
 ```
 <VirtualHost *:80>
+    ServerAdmin admin@lwt.com
     ServerName lwt.com
     ServerAlias www.lwt.com
-
     DocumentRoot /var/www/lwt/web
-    <Directory /var/www/lwt/web>
-        AllowOverride All
-        Order Allow,Deny
-        Allow from All
-    </Directory>
-    ErrorLog /var/log/apache2/lwt_error.log
-    CustomLog /var/log/apache2/lwt_access.log combined
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+        <Directory /var/www/lwt/web>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride All
+            Order allow,deny
+            allow from all
+        </Directory>
 </VirtualHost>
 ```
 
@@ -316,6 +317,24 @@ php bin/console cache:warmup --env=prod
 ```bash
 php bin/console doctrine:schema:update --force
 php bin/console doctrine:fixtures:load
+```
+
+- In case you work with LAMP Server, you will need to configure your apache virtual host.
+```
+<VirtualHost *:80>
+    ServerAdmin admin@lwt.com
+    ServerName lwt.com
+    ServerAlias www.lwt.com
+    DocumentRoot /var/www/lwt/web
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+        <Directory /var/www/lwt/web>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride All
+            Order allow,deny
+            allow from all
+        </Directory>
+</VirtualHost>
 ```
 
 *For More Info*, Please [check symfony docs](https://symfony.com/doc/current/deployment.html)
