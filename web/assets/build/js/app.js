@@ -612,16 +612,17 @@ lwt_app.delete_server_ram = function (window, document, $) {
             base.el.deleteButt.on("click", base.handler);
         },
         handler: function handler(event) {
+            var _self = $(this);
             event.preventDefault();
             $('.ram_delete_modal').modal({
                 closable: false,
                 onDeny: function onDeny() {},
                 onApprove: function onApprove() {
 
-                    base.el.deleteButt.addClass('loading');
+                    _self.addClass('loading');
                     Pace.track(function () {
                         $.ajax({
-                            url: base.el.deleteButt.attr('data-target') + '?api_token=' + base.get('api_token') + '&csrf_token=' + $('meta[name="csrf-token"]').attr('content'),
+                            url: _self.attr('data-target') + '?api_token=' + base.get('api_token') + '&csrf_token=' + $('meta[name="csrf-token"]').attr('content'),
                             type: "DELETE",
                             data: base.data(),
                             success: function success(response) {
@@ -734,15 +735,16 @@ lwt_app.delete_server = function (window, document, $) {
             base.el.deleteButt.on("click", base.handler);
         },
         handler: function handler(event) {
+            var _self = $(this);
             event.preventDefault();
             $('.server_delete_modal').modal({
                 closable: false,
                 onDeny: function onDeny() {},
                 onApprove: function onApprove() {
-                    base.el.deleteButt.addClass('loading');
+                    _self.addClass('loading');
                     Pace.track(function () {
                         $.ajax({
-                            url: base.el.deleteButt.attr('data-target') + '?api_token=' + base.get('api_token') + '&csrf_token=' + $('meta[name="csrf-token"]').attr('content'),
+                            url: _self.attr('data-target') + '?api_token=' + base.get('api_token') + '&csrf_token=' + $('meta[name="csrf-token"]').attr('content'),
                             type: "DELETE",
                             data: base.data(),
                             success: function success(response) {
