@@ -29,7 +29,7 @@
         "symfony/validator": "^3.3",
         "twig/twig": "^1.0||^2.0",
         "doctrine/doctrine-fixtures-bundle": "^2.4",
-        "sensio/generator-bundle": "^3.0"
+        "sensio/generator-bundle": "3.1.7"
     },
     "require-dev": {
         "laravel/homestead": "^4.0",
