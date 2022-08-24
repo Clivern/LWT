@@ -20,20 +20,20 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "symfony/event-dispatcher": "^3.3",
-        "symfony/monolog-bundle": "^3.1.0",
-        "symfony/polyfill-apcu": "^1.0",
-        "symfony/security": "^3.3",
-        "symfony/swiftmailer-bundle": "^2.3.10",
-        "symfony/symfony": "3.3.*",
-        "symfony/validator": "^3.3",
+        "symfony/event-dispatcher": "3.4.47",
+        "symfony/monolog-bundle": "3.1.0",
+        "symfony/polyfill-apcu": "1.5.0",
+        "symfony/security": "3.4.49",
+        "symfony/swiftmailer-bundle": "2.6.3",
+        "symfony/symfony": "3.3.9",
+        "symfony/validator": "3.4.47",
         "twig/twig": "^1.0||^2.0",
         "doctrine/doctrine-fixtures-bundle": "^2.4",
         "sensio/generator-bundle": "^3.0"
     },
     "require-dev": {
         "laravel/homestead": "^4.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "3.3.9"
     },
     "scripts": {
         "symfony-scripts": [
